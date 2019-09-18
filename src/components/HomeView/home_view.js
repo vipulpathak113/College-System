@@ -28,62 +28,7 @@ export default class HomeView extends React.Component {
         })
     }
 
-    componentWillMount() {
-      // store.dispatch({
-      //   type: "API_CALL",
-      //   value: true
-      // })
-        easygov.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "APPLICATION_COUNT", function (response, component) { })
-        store.subscribe(() => {
-            response = store.getState()
-            if (response.type === "APPLICATION_COUNT") {
-                if (response.code === 200) {
-                    let data = [
-                        {
-                            docContent: response.data.documentsApprovedRemaining + response.data.documentsPending + " Applications are pending for Documents Verification.",
-                            btnText: 'Verify Now',
-                            type: 'verify_documents',
-                            image: docPending,
-                            id: 2,
-                            remaining: response.data.documentsApprovedRemaining + response.data.documentsPending,
-                            view_permissions: "data.change_review_documents",
-                            change_permissions: "data.change_review_documents",
-                            expanded: false
-                        },
-                        {
-                            docContent: response.data.activeBeneficiaryRemaining + " Applications are pending for Approval.",
-                            btnText: 'Approve Now',
-                            type: 'approve_beneficiary',
-                            image: applicationPending,
-                            id: 3,
-                            remaining: response.data.activeBeneficiaryRemaining,
-                            view_permissions: "data.change_review_applications",
-                            change_permissions: "data.change_review_applications",
-                            expanded: false
-                        },
-                        {
-                            docContent: response.data.benefitsRemaining + " Applications are pending for Benefits Delivery.",
-                            btnText: 'Complete Now',
-                            type: 'disburse_benefits',
-                            image: applicationBenefit,
-                            id: 5,
-                            remaining: response.data.benefitsRemaining,
-                            view_permissions: "data.add_non_monetary_beneficiary",
-                            change_permissions: "data.change_non_monetary_beneficiary",
-                            expanded: true
-                        }
-                    ]
-                    this.setState({
-                        applicationsData: data
-                    })
-                }
-                else if (response.code === 401 && response.message.toLowerCase().includes("token")) {
-                    storage.setItemValue(keys.APP_PREFERENCE.IS_TOKEN_EXPIRED, "TRUE")
-                    window.location.href = "/sign-in"
-                }
-            }
-        })
-    }
+    
 
     render() {
         var today_date = new Date()

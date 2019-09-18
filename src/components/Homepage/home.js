@@ -10,6 +10,7 @@ import DrawerData from '../DrawerData/drawer_data'
 import HomeView from '../HomeView/home_view'
 import HelpDialog from '../HelpDialog/help_dialog'
 import VerifyDocuments from '../VerifyDocuments/verify_documents'
+import ImportData from '../ImportData/import'
 import ViewApplication from '../ViewApplication/view_application'
 import ApproveBeneficiary from '../ApproveBeneficiary/approve_beneficiary'
 import Monetary from '../DisburseBenefit/monetary_dbt'
@@ -45,7 +46,8 @@ export default class Home extends Component {
 			toasts: [],
 			autohide: true,
 			showHome : false,
-			check : ""
+			check : "",
+			import:false
 		};
 	}
 	openDrawerRight = () => {
@@ -96,7 +98,8 @@ export default class Home extends Component {
 	componentWillMount() {
 		
 			this.setState({
-				showHome: true
+				showHome: true,
+				import:true
 			})
 
 		// storage.removeItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)
@@ -119,6 +122,7 @@ export default class Home extends Component {
 		storage.removeItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)
 		storage.removeItemValue(keys.USER_PREFERENCE.PREVIOUS_PAGE)
 		if (val === 5 || val === 6) {
+
 			this.setState({
 				newProps: 'monetary-active',
 				property: val,
@@ -128,9 +132,11 @@ export default class Home extends Component {
 		else {
 			this.setState({
 				property: val,
-				newProps: ''
+				newProps: '',
 			})
 		}
+
+		
 	}
 	handleExpansion() {
 		this.setState({
@@ -161,6 +167,7 @@ export default class Home extends Component {
 	}
 
 	render() {
+		console.log(this.state.property)
 		const { toasts, autohide } = this.state;
 		const { visible, position, view, changePassword } = this.state;
 		const isRight = position === 'right';
@@ -256,8 +263,16 @@ export default class Home extends Component {
 										<h4 className="admin-tab">Home</h4>
 									</div> : null
 							}
+
+
+{this.state.import ?<div className={`admin-tab-panel ${this.state.property === 2 ? "active" : ""}`} onClick={this._handleClick.bind(this, 2)}>
+										<h4 className="admin-tab">Import Data</h4>
+									</div>: null}
 							
 						</div>
+
+						
+
 					</div>
 					<div className="md-cell--9 width80">
 						<div className="admin-right-panel-bg">
@@ -285,7 +300,13 @@ export default class Home extends Component {
 								</div>
 							</div>
 						</div>
-	
+						<div>
+							{
+								this.state.property === 1 ?
+									<HomeView /> : this.state.property === 2 ?
+										<ImportData /> : null
+							}
+						</div>
 					</div>
 				</div>
 				<div>
