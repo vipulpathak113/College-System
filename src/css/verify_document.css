@@ -1,0 +1,26 @@
+.document-viewer-container {
+  width: 100%;
+  height: 400px; }
+
+.benefits-providing-pictures-container {
+  background-color: white;
+  width: 69%;
+  float: left;
+  height: 100%; }
+
+/* .benefit-picture-container {
+  padding: 15px 0px 12px 0px;
+  width: 100%;
+  min-height: 250px;
+  text-align: center;
+  height: auto; } */
+.beneficiary-pictures-card {
+  width: 50%;
+  float: left;
+  padding: 0px 13px 0px 13px;
+  height: 250px; }
+
+.beneficiary-pictures {
+  width: 100%;
+  border: 1px solid black;
+  height: 220px; }

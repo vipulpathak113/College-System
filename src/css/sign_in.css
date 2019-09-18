@@ -1,0 +1,127 @@
+body {
+  background-color: #f3f5f7;
+  width: 100%;
+  height: 100%; }
+
+.signin-container {
+  text-align: center; }
+
+.signin-panel {
+  padding-top: 40px; }
+
+.home-title {
+  padding-top: 20px;
+  font-weight: bold;
+  color: black;
+  margin: 0px;
+  padding-bottom: 20px; }
+
+.harlabh-title {
+  font-size: 35px; }
+
+.home-logo {
+  height: 100px;
+  width: 100px; }
+
+.heading-admin-title {
+  font-size: 12px;
+  color: #1951AF; }
+
+.signin-textfield {
+  width: 300px;
+  margin: 0 auto;
+  height: 110px; }
+
+.signin-textfield .md-divider {
+  display: none; }
+
+.signin-button {
+  width: 300px;
+  margin: 0 auto;
+  height: 50px; }
+
+.signin-bottom-link {
+  height: 60px;
+  margin: 0 auto;
+  width: 300px; }
+
+.signin-remember-password {
+  width: 150px;
+  float: left; }
+
+.signin-remember-password .md-btn--icon {
+  padding: 12px 0px;
+  width: 24px;
+  font-size: 11px; }
+
+.userid-textfield-area {
+  width: 300px;
+  height: 45px;
+  background-color: white; }
+
+.userid-icon {
+  width: 45px;
+  height: 45px;
+  float: left;
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc; }
+
+.password-icon {
+  width: 45px;
+  height: 45px;
+  float: left;
+  border: 1px solid #cccccc;
+  border-right: 0px; }
+
+.userid-icon-property {
+  width: 25px;
+  height: 45px;
+  padding-top: 10px; }
+
+.userid-textfield {
+  width: 255px;
+  float: left; }
+
+.change-password-textfield {
+  width: 100%;
+  margin-top: 20px; }
+
+.change-password-textfield .md-divider {
+  display: none; }
+
+.change-password-textfield .md-text-field--margin {
+  margin: 0;
+  line-height: 3.3; }
+
+.change-password-textfield .md-password-btn {
+  margin-right: 15px; }
+
+.userid-textfield .md-password-btn {
+  margin-right: 10px; }
+
+.signin-forget-password {
+  width: 150px;
+  float: right;
+  margin-top: 11px;
+  text-align: right; }
+
+.signin-forget-password h5 {
+  font-size: 13px;
+  color: #29ade2; }
+
+.statement-bottom {
+  opacity: 80%; }
+
+.statement-bottom h4 {
+  opacity: 0.4;
+  font-size: 11px; }
+
+.change-password-save-changes-btn {
+  text-align: right;
+  margin: 20px 0; }
+
+.save-changes-btn {
+  color: #fff;
+  background-color: #ef7950;
+  border-radius: 3px;
+  height: 35px; }

@@ -1,0 +1,9 @@
+// Can't use the nice '~react-md/src/scss/react-md' since this isn't being bundled with webpack
+@import '../../node_modules/react-md/src/scss/react-md';
+
+// Variable overrides
+@function translate3d($x,$y,$z){
+  @return translate($x, $y)
+}
+$md-primary-color: $md-deep-orange-500;
+$md-secondary-color: $md-purple-a-400;

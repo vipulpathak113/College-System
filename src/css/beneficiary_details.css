@@ -1,0 +1,297 @@
+.beneficiary-details-right-panel-content-bg {
+  padding: 90px 30px 100px 30px;
+  height: 100%; }
+
+.beneficiary-details-print-btn-container {
+  height: 40px;
+  padding-top: 18px; }
+
+.beneficiary-details-print-icon {
+  float: left;
+  width: 20px;
+  font-size: 18px;
+  color: black; }
+
+.beneficiary-details-print-text {
+  float: left;
+  width: 45px;
+  font-size: 13px;
+  color: black; }
+
+.outer-container {
+  width: 100%;
+  padding-top: 10px; }
+
+.schemes-questions-container {
+  width: 50%;
+  float: left;
+  height: 100%; }
+
+.documents-details {
+  width: calc(50% - 15px);
+  float: right;
+  margin-left: 15px;
+  height: 100%; }
+
+.container-heading {
+  height: 40px;
+  background-color: rgba(239, 121, 80, 0.2);
+  padding: 11px 0px 0px 30px;
+  font-weight: 500; }
+
+.schems-questions-container-content {
+  height: 100%;
+  background-color: #fff;
+  padding: 15px 30px 30px 30px; }
+
+.schemes-questions-button-container {
+  margin: 20px 0;
+  width: 100%;
+  height: 35px; }
+
+.beneficiary-details-heading {
+  font-weight: bold; }
+
+.documents-viewer-container {
+  padding: 20px 30px 25px 30px;
+  height: 100%;
+  background-color: #fff; }
+
+.document-selectfield-container {
+  margin-bottom: 30px;
+  width: 100%;
+  height: 40px;
+  border-radius: 3px; }
+
+.field-container {
+  min-height: 80px;
+  height: auto; }
+
+.documents-image-viewer {
+  border: 1px solid rgba(32, 42, 51, 0.3);
+  height: 400px;
+  width: 100%; }
+
+.beneficiary-approve-btn {
+  background-color: #00a99d;
+  color: #fff;
+  border-radius: 3px;
+  width: 150px;
+  float: right;
+  text-transform: capitalize;
+  height: 35px; }
+
+.beneficiary-reject-btn {
+  background-color: #fff;
+  color: rgba(32, 42, 51, 0.7);
+  border-radius: 3px;
+  float: right;
+  margin-right: 10px;
+  text-transform: capitalize;
+  border: 1px solid rgba(32, 42, 51, 0.3);
+  width: 150px;
+  height: 35px; }
+
+.beneficiary-details-textarea textarea {
+  width: 100%;
+  min-height: 75px;
+  padding-left: 15px; }
+
+.document-viewer-container {
+  height: 100%; }
+
+.approve-reject-review-btn {
+  width: 100%;
+  height: 35px;
+  margin: 25px 0; }
+
+.view-doc-approve-btn {
+  width: 150px;
+  float: right;
+  background-color: #00a99d;
+  color: #fff;
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.view-doc-suggest-approve-btn {
+  width: 155px;
+  float: right;
+  background-color: #00a99d;
+  color: #fff;
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.action-approve-btn {
+  width: 175px;
+  float: right;
+  background-color: #00a99d;
+  margin-right: 10px;
+  color: #fff;
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.action-rejection-btn {
+  width: 175px;
+  float: right;
+  background-color: red;
+  margin-right: 10px;
+  color: #fff;
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.view-doc-review-btn {
+  width: 150px;
+  float: right;
+  color: #202a33;
+  border: 1px solid rgba(32, 42, 51, 0.3);
+  margin-right: 20px;
+  background-color: #fff;
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.view-doc-rejected-btn {
+  width: 150px;
+  float: right;
+  margin-right: 20px;
+  background-color: #fff;
+  color: red;
+  border: 1px solid rgba(32, 42, 51, 0.3);
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.view-doc-approval-btn {
+  width: 150px;
+  float: right;
+  margin-right: 20px;
+  background-color: #fff;
+  color: #00a99d;
+  border: 1px solid rgba(32, 42, 51, 0.3);
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.view-doc-suggest-rejected-btn {
+  width: 160px;
+  float: right;
+  margin-right: 20px;
+  background-color: #fff;
+  color: red;
+  border: 1px solid rgba(32, 42, 51, 0.3);
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.action-rejected-btn {
+  width: 175px;
+  float: right;
+  margin-right: 20px;
+  background-color: #fff;
+  color: red;
+  border: 1px solid rgba(32, 42, 51, 0.3);
+  height: 35px;
+  text-transform: capitalize;
+  border-radius: 3px; }
+
+.rejected-reason-textarea textarea {
+  min-height: 100px;
+  height: auto;
+  padding: 15px;
+  outline: none;
+  border: 1px solid rgba(32, 42, 51, 0.7); }
+
+.rejected-reason-error-text {
+  font-size: 11px;
+  color: red; }
+
+.reject-messgage-done-btn {
+  width: 100px;
+  height: 35px;
+  float: right;
+  color: #fff;
+  background-color: #ef7950; }
+
+.doc-type-mgmnt {
+  min-width: 175px;
+  width: auto;
+  min-height: 100px;
+  height: auto; }
+
+.verify-doc-type-text {
+  min-height: 50px;
+  height: auto;
+  display: flex;
+  align-items: center; }
+
+.view-doc-type-text {
+  min-height: 25px;
+  height: auto;
+  display: flex;
+  align-items: center; }
+
+.done-icon-style {
+  font-size: 16px;
+  color: #00a99d;
+  font-weight: bold; }
+
+.approved-icon-style {
+  font-size: 15px;
+  color: #00a99d;
+  font-weight: bold; }
+
+.document-span-text-style {
+  color: #00a99d;
+  font-size: 15px;
+  float: right; }
+
+.span-text-style {
+  color: #00a99d; }
+
+.span-rejected-text-style {
+  color: red;
+  position: relative; }
+
+.document-span-rejected-text-style {
+  color: red;
+  font-size: 15px;
+  float: right;
+  position: relative; }
+
+.span-review-later-text-style {
+  color: #bf603f;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 35px;
+  font-size: 12px;
+  text-transform: capitalize;
+  border: 1px solid #bf603f; }
+
+.verify-review-later-btn-container .md-icon-text:last-child {
+  padding-left: 5px; }
+
+.verify-review-later-btn-container .md-icon {
+  font-size: 16px; }
+
+.error-message-text {
+  color: red; }
+
+.schemes-name-table-col {
+  min-width: 100px;
+  max-width: 150px;
+  width: auto; }
+
+.total-count-for-tabs {
+  position: absolute;
+  background-color: #ef7950;
+  color: #fff;
+  top: 0;
+  right: 0;
+  font-weight: bold;
+  margin: -20px -20px;
+  border-radius: 500px;
+  padding: 0 5px; }
