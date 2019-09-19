@@ -3683,6 +3683,9 @@ tbody .md-table-row--hover {
 .md-text--disabled {
   color: rgba(0, 0, 0, 0.38); }
 
+.md-text--enabled {
+  color: black; }
+
 .md-text--theme-primary {
   color: #ff5722; }
 
@@ -3727,3 +3730,8 @@ body {
 #filestatus {
   margin-top: 26px;
   font-size: initial; }
+
+.editButton {
+  float: right;
+  background: teal;
+  color: white; }

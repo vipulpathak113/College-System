@@ -58,7 +58,7 @@
 .benefit-description {
   width: 100%;
   padding-top: 10px;
-  height: 60px; }
+  height: 40px; }
 
 .benefit-heading {
   font-weight: 600;
@@ -175,7 +175,8 @@
   background-color: #f2f2f2;
   height: 40px;
   border-radius: 3px;
-  padding-left: 15px; }
+  padding-left: 15px;
+  width: 450px; }
 
 .beneficiary-details-textfields .md-divider {
   display: none !important; }

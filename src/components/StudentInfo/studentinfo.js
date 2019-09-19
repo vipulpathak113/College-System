@@ -42,12 +42,17 @@ export default class StudentInfo extends React.Component {
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "SHOW_VIEW_APPLICATION_DETAILS") {
-                console.log(response)
                 applicationData = response.data
                 this.setState({
                     openViewApplications: true
                 })
+            }
+            else if (response.type === "CLOSE_VIEW_APPLICATION_DETAILS") {
+				this.setState({
+                    openViewApplications: false
+                })
 			}
+
 		})
 	}
 
