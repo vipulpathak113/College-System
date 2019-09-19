@@ -3717,3 +3717,13 @@ tbody .md-table-row--hover {
 
 body {
   margin: 0px; }
+
+.compatFile {
+  color: green; }
+
+.notCompatFile {
+  color: red; }
+
+#filestatus {
+  margin-top: 26px;
+  font-size: initial; }

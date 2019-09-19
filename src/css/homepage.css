@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
   font-weight: bold; }
 
 .admin-text {
-  color: #ef7950;
+  color: cornflowerblue;
   font-size: 9px;
   font-weight: bold; }
 
@@ -152,7 +152,7 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
   color: rgba(32, 42, 51, 0.8); }
 
 .admin-activity-container {
-  color: #ef7950;
+  color: cornflowerblue;
   font-size: 30px; }
 
 /*for dropdown */

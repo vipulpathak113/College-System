@@ -37,6 +37,7 @@ const ENDPOINTS = {
 	VIEW_BENEFIT_DATA : HOST + 'adminpanel/harlabhadmin/viewbenefitdata/',
 	LOGOUT_USER : HOST + 'adminpanel/logout/',
 	CHANGE_PASSWORD: HOST + '/api/auth/password_change',
+	STUDENT_INFO: HOST+ '/api/students',
 	HARLABH_DASHBOARD: HOST + 'harlabhdashboard/righttoservicestatus/',
 	HARLABH_DISTRICT_WISE_DATA_COUNT: HOST + 'harlabhdashboard/districtwisedatacount/',
 	HARLABH_COMPARE_ONBOARDING_STATUS: HOST + 'harlabhdashboard/comparing_onboarding_status/',

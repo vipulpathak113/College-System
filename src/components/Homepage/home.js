@@ -47,7 +47,8 @@ export default class Home extends Component {
 			autohide: true,
 			showHome : false,
 			check : "",
-			import:false
+			import:false,
+			info:false
 		};
 	}
 	openDrawerRight = () => {
@@ -99,8 +100,11 @@ export default class Home extends Component {
 		
 			this.setState({
 				showHome: true,
-				import:true
+				import:true,
+				info:true
 			})
+
+			easygov.send(bootupsettings.ENDPOINTS.STUDENT_INFO,{},"GET_STUDENT_INFO", function (response, component) { })
 
 		// storage.removeItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)
 		storage.removeItemValue(keys.USER_PREFERENCE.PREVIOUS_PAGE)
@@ -167,7 +171,6 @@ export default class Home extends Component {
 	}
 
 	render() {
-		console.log(this.state.property)
 		const { toasts, autohide } = this.state;
 		const { visible, position, view, changePassword } = this.state;
 		const isRight = position === 'right';
@@ -267,6 +270,10 @@ export default class Home extends Component {
 
 {this.state.import ?<div className={`admin-tab-panel ${this.state.property === 2 ? "active" : ""}`} onClick={this._handleClick.bind(this, 2)}>
 										<h4 className="admin-tab">Import Data</h4>
+									</div>: null}
+
+									{this.state.info ?<div className={`admin-tab-panel ${this.state.property === 3 ? "active" : ""}`} onClick={this._handleClick.bind(this, 3)}>
+										<h4 className="admin-tab">Student Info</h4>
 									</div>: null}
 							
 						</div>

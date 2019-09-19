@@ -61,6 +61,54 @@ class network {
 
 	}
 
+	send(endpoint, formdata, actionType) {
+		if (storage.getCookies(keys.USER_PREFERENCE.TOKEN)) {
+			token = storage.getCookies(keys.USER_PREFERENCE.TOKEN);
+			email= storage.getCookies(keys.USER_PREFERENCE.EMAIL);
+			password= storage.getCookies(keys.USER_PREFERENCE.PASSWORD);
+
+		}
+		else {
+			token = " ";
+			email:"";
+			password:""
+		}
+		// debugger;
+		store.dispatch({ type: "API_CALL", value: true	})
+		if(actionType !== "SIGNIN"){
+			NProgress.start()
+		}
+		$.ajax({
+			url: endpoint,
+			type: "GET",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			enctype: 'multipart/form-data',
+			data: JSON.stringify(formdata),
+			headers: { 'Authorization': 'Basic ' + btoa(email + ":" + password),
+					'Accept': 'application/json',
+					'Content-Type': 'application/json' },
+			success: function (response) {
+				
+				console.log("------------", response);
+				response["type"] = actionType
+				store.dispatch({ type: "API_CALL", value:false})
+				store.dispatch(response)
+				NProgress.done()
+			},
+			error: function (response) {
+				console.log("------------", response);
+				store.dispatch({
+					type: "RESPONSE_FAILED",
+					value: true,
+					response:response.responseJSON.errors
+				})
+				NProgress.done()
+			}
+		});
+
+	}
+
 	sendLogin(endpoint, formdata, actionType) {
 		if (storage.getCookies(keys.USER_PREFERENCE.TOKEN)) {
 			token = storage.getCookies(keys.USER_PREFERENCE.TOKEN);
