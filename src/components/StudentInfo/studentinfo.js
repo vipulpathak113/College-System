@@ -6,16 +6,24 @@ import easygov from '../../utility/network'
 import bootupsettings from '../../models/bootupsettings'
 import FlatButton from '../Buttons/flat_button'
 import { Button } from 'react-md'
+import StudentDetails from './student_details'
 
 
-var data=[]
+var data=[],applicationData;
+
+var openViewApplication = (data) => {
+    console.log(data)
+	store.dispatch({ type: "SHOW_VIEW_APPLICATION_DETAILS",  data: data })
+}
 export default class StudentInfo extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			studentdata:[]
+            studentdata:[],
+            openViewApplications :false
 		}
     }
+    
 
     componentDidMount(){
         easygov.send(bootupsettings.ENDPOINTS.STUDENT_INFO,{},"GET_STUDENT_INFO", function (response, component) { })
@@ -30,12 +38,29 @@ export default class StudentInfo extends React.Component {
 		})
     }
     
+    componentWillMount() {
+		store.subscribe(() => {
+			var response = store.getState()
+			if (response.type === "SHOW_VIEW_APPLICATION_DETAILS") {
+                console.log(response)
+                applicationData = response.data
+                this.setState({
+                    openViewApplications: true
+                })
+			}
+		})
+	}
+
+
 
     render(){
        var data= this.state.studentdata
         return (
+            
+            <div>
+                {!this.state.openViewApplications ?
 			<div className="right-panel-content-bg" >
-                <h3 className="approve-beneficiary-text">Student Details</h3>
+                <h3 className="approve-beneficiary-text">Students</h3>
 				<div >
 					
 								<div className="content-table-container">
@@ -55,8 +80,9 @@ export default class StudentInfo extends React.Component {
                                         {
                                      data.length > 0 ?
                                      data.map((item, i) => {
+                                         console.log(item)
                                      return(
-                                     <tr className="content-table-row" key={i}>
+                                        <tr className="content-table-row hover-clickable-table" key={i} onClick={openViewApplication.bind(this, item)}>
                                      <td className="table-coloumn-positions">{item.first_name} {item.last_name}</td>
                                      <td className="table-coloumn-positions">{item.profile.roll_number}</td>
                                      <td className="table-coloumn-positions">{item.email}</td>
@@ -74,6 +100,9 @@ export default class StudentInfo extends React.Component {
 								</div> 
 				</div>
 			</div>
+            : <StudentDetails data={applicationData} />
+        }
+            </div>
 		)
 
     }
