@@ -514,7 +514,7 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
   border-bottom: 1px solid rgba(32, 42, 51, 0.1); }
 
 .content-body-property {
-  background-color: rgba(239, 121, 80, 0.2); }
+  background-color: #91bae2; }
 
 .content-table-container td {
   font-size: 12px;
@@ -524,7 +524,8 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
 .header-content-table th {
   font-size: 12px;
   text-align: left;
-  color: rgba(32, 42, 51, 0.9); }
+  color: rgba(32, 42, 51, 0.9);
+  font-weight: 700; }
 
 .content-table-container {
   width: 100%; }

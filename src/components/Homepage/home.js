@@ -5,26 +5,15 @@ import store from '../../utility/store'
 import storage from '../../utility/encrypt_data'
 import IconButton from '../Buttons/icon_button'
 import style from '../../utility/style'
-import adminLogo from '../../img/harlabh-admin.svg'
 import DrawerData from '../DrawerData/drawer_data'
 import HomeView from '../HomeView/home_view'
 import HelpDialog from '../HelpDialog/help_dialog'
-import VerifyDocuments from '../VerifyDocuments/verify_documents'
 import ImportData from '../ImportData/import'
-import ViewApplication from '../ViewApplication/view_application'
-import ApproveBeneficiary from '../ApproveBeneficiary/approve_beneficiary'
-import Monetary from '../DisburseBenefit/monetary_dbt'
-import NonMonetary from '../DisburseBenefit/non_monetary_home'
-import BeneficiaryDetails from '../ApproveBeneficiary/beneficiary_details'
-import ViewDocument from '../VerifyDocuments/view_document'
+import StudentInfo from '../StudentInfo/studentinfo'
 import bootupsettings from '../../models/bootupsettings';
 import easygov from '../../utility/network'
 import ChangePasswordDialog from '../ChangePasswordDialog/change_password_dialog'
-import { ExpansionList } from 'react-md/lib/ExpansionPanels';
-import ExpansionPanel from 'react-md/lib/ExpansionPanels/ExpansionPanel';
-import ViewDoc from '../VerifyDocuments/view_document'
 
-var enableHome = true, countData = {}
 export default class Home extends Component {
 	constructor() {
 		super();
@@ -104,7 +93,6 @@ export default class Home extends Component {
 				info:true
 			})
 
-			easygov.send(bootupsettings.ENDPOINTS.STUDENT_INFO,{},"GET_STUDENT_INFO", function (response, component) { })
 
 		// storage.removeItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)
 		storage.removeItemValue(keys.USER_PREFERENCE.PREVIOUS_PAGE)
@@ -307,11 +295,11 @@ export default class Home extends Component {
 								</div>
 							</div>
 						</div>
-						<div>
+						<div> StudentInfo
 							{
 								this.state.property === 1 ?
 									<HomeView /> : this.state.property === 2 ?
-										<ImportData /> : null
+										<ImportData /> : this.state.property === 3 ?<StudentInfo/>: null
 							}
 						</div>
 					</div>
@@ -320,7 +308,6 @@ export default class Home extends Component {
 					<Snackbar
 						id="app-password-snackbar"
 						toasts={toasts}
-						primary
 						autohide={true}
 						onDismiss={this.dismissToast}
 					/>

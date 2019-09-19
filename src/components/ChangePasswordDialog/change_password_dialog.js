@@ -50,7 +50,7 @@ export default class ChangePassword extends React.Component {
                             new_password: this.state.newPassword,
                             confirmPassword: this.state.confirmPassword
                         }
-                        easygov.send(bootupsettings.ENDPOINTS.CHANGE_PASSWORD, change_password, "CHANGE_PASSWORD", function (response, component) { })
+                        easygov.sendpost(bootupsettings.ENDPOINTS.CHANGE_PASSWORD, change_password, "CHANGE_PASSWORD", function (response, component) { })
                     }
                     else{
                         this.setState({

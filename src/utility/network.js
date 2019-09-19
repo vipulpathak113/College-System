@@ -11,7 +11,7 @@ var token,email,password, languageCode = "en"
 NProgress.configure({ showSpinner: false })
 class network {
 
-	send(endpoint, formdata, actionType) {
+	sendpost(endpoint, formdata, actionType) {
 		if (storage.getCookies(keys.USER_PREFERENCE.TOKEN)) {
 			token = storage.getCookies(keys.USER_PREFERENCE.TOKEN);
 			email= storage.getCookies(keys.USER_PREFERENCE.EMAIL);

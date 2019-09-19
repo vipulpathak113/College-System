@@ -57,12 +57,12 @@ export default class ImportData extends React.Component {
 	};
 
 	render() {
-		
+
 		return (
 			<div className="right-panel-content-bg"> 	
 
-          <h1>Upload File Here</h1>
-          <input type="file" name="file" onChange={e => this.onChange(e)} />
+          <h1>Upload Student Data</h1>
+          <input type="file" id="file-upload" onChange={e => this.onChange(e)} />
 		  <div id="filestatus" className={this.state.status?"compatFile":"notCompatFile"}></div>
 			</div>
 			
