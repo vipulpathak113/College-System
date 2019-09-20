@@ -26,6 +26,7 @@ export default class StudentInfo extends React.Component {
     
 
     componentDidMount(){
+        console.log("hello")
         easygov.send(bootupsettings.ENDPOINTS.STUDENT_INFO,{},"GET_STUDENT_INFO", function (response, component) { })
         store.subscribe(() => {
             var response = store.getState()
@@ -51,6 +52,14 @@ export default class StudentInfo extends React.Component {
 				this.setState({
                     openViewApplications: false
                 })
+
+               if(response.type === "EDIT_STUDENT_INFO"){
+                    data= response
+                    console.log(data)
+                   this.setState({
+                    applicationData: response.data
+                   })
+                }
 			}
 
 		})
@@ -59,6 +68,7 @@ export default class StudentInfo extends React.Component {
 
 
     render(){
+        console.log(applicationData)
        var data= this.state.studentdata
         return (
             
@@ -85,7 +95,6 @@ export default class StudentInfo extends React.Component {
                                         {
                                      data.length > 0 ?
                                      data.map((item, i) => {
-                                         console.log(item)
                                      return(
                                         <tr className="content-table-row hover-clickable-table" key={i} onClick={openViewApplication.bind(this, item)}>
                                      <td className="table-coloumn-positions">{item.first_name} {item.last_name}</td>

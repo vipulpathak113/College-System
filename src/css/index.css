@@ -3735,3 +3735,19 @@ body {
   float: right;
   background: teal;
   color: white; }
+
+.btndiv {
+  display: flex;
+  float: right; }
+
+.saveButton {
+  background: mediumturquoise;
+  font-weight: 700;
+  color: black;
+  right: 50px; }
+
+.cancelButton {
+  background: indianred;
+  font-weight: 700;
+  color: black;
+  right: 25px; }

@@ -38,10 +38,12 @@ const ENDPOINTS = {
 	LOGOUT_USER : HOST + 'adminpanel/logout/',
 	CHANGE_PASSWORD: HOST + '/api/auth/password_change',
 	STUDENT_INFO: HOST+ '/api/students',
+	STUDENT_PROFILE: HOST+ '/api/students',
 	HARLABH_DASHBOARD: HOST + 'harlabhdashboard/righttoservicestatus/',
 	HARLABH_DISTRICT_WISE_DATA_COUNT: HOST + 'harlabhdashboard/districtwisedatacount/',
 	HARLABH_COMPARE_ONBOARDING_STATUS: HOST + 'harlabhdashboard/comparing_onboarding_status/',
 	HARLABH_FILTER_SERVICES: HOST + 'harlabhdashboard/filterservices/',
+	EDIT_STUDENT_INFO:HOST+ '/api/students'
 }
 const URL = {
 	COMPARE: "compare",

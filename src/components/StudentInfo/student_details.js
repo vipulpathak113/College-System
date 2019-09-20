@@ -9,10 +9,15 @@ import easygov from '../../utility/network'
 import $ from 'jquery'
 import FlatButton from '../Buttons/flat_button'
 
+var data=[]
 export default class StudentDetails extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			studentdata:{},
+			saveDisplay:"none",
+			editDisplay:"block",
+			cancelDisplay:"none"
 		}
     }
 
@@ -24,37 +29,78 @@ export default class StudentDetails extends React.Component {
 	edit(){
 		$("input").prop('disabled', false);
 		$("input").addClass("md-text--enabled");
+		this.setState({
+			editDisplay:"none",
+			saveDisplay:"block",
+			cancelDisplay:"block"
+		})
 	}
 
 	save(){
 		var data= this.props.data
-		this.setState({
-			detail:{
-					"email": this.state.email?this.state.email:data.email,
-					"first_name": this.state.first_name?this.state.first_name:data.first_name,
-					"last_name": this.state.last_name?this.state.last_name:data.last_name,
-					"phone_number": this.state.phone_number?this.state.phone_number:data.phone_number,
-					"profile":{
-					"address": this.state.address?this.state.address:data.profile.address,
-					"aggregate": this.state.aggregate?this.state.aggregate:data.profile.aggregate,
-					"batch_year": this.state.batch_year?this.state.batch_year:data.profile.batch_year,
-						"department_details": {"name": this.state.departmentname?this.state.departmentname:data.profile.department_details.name},
-					"num_of_backlogs": this.state.num_of_backlogs?this.state.num_of_backlogs:data.profile.num_of_backlogs,
-					"roll_number": this.state.roll_number?this.state.roll_number:data.profile.roll_number
+		var detail={
+			"id":data.id,
+			"email": this.state.email?this.state.email:data.email,
+			"first_name": this.state.first_name?this.state.first_name:data.first_name,
+			"last_name": this.state.last_name?this.state.last_name:data.last_name,
+			"phone_number": this.state.phone_number?this.state.phone_number:data.phone_number,
+			"profile":{
+			"address": this.state.address?this.state.address:data.profile.address,
+			"aggregate": this.state.aggregate?this.state.aggregate:data.profile.aggregate,
+			"batch_year": this.state.batch_year?this.state.batch_year:data.profile.batch_year,
+				"department_details": {"name": this.state.departmentname?this.state.departmentname:data.profile.department_details.name},
+			"num_of_backlogs": this.state.num_of_backlogs?this.state.num_of_backlogs:data.profile.num_of_backlogs,
+			"roll_number": this.state.roll_number?this.state.roll_number:data.profile.roll_number
 }
-			}
+	}
+		this.setState({
+			detail:detail,
+			editDisplay:"block",
+			cancelDisplay:"none",
+			saveDisplay:"none"
+		})
+		$("input").prop('disabled', true);
+		$("input").removeClass("md-text--enabled");
+
+		easygov.sendPatch(bootupsettings.ENDPOINTS.EDIT_STUDENT_INFO,detail,"EDIT_STUDENT_INFO", function (response, component) { })
+
+
+	}
+
+	cancel(){
+		$("input").prop('disabled', true);
+		$("input").removeClass("md-text--enabled");
+		this.setState({
+			editDisplay:"block",
+			cancelDisplay:"none",
+			saveDisplay:"none"
 		})
 	}
 
+	componentDidMount(){
+console.log(this.props)
+        easygov.sendGet(bootupsettings.ENDPOINTS.STUDENT_PROFILE,this.props.data.id,"GET_STUDENT_PROFILE", function (response, component) { })
+        store.subscribe(() => {
+            var response = store.getState()
+			if (response.type === "GET_STUDENT_PROFILE") {
+				data= response
+				console.log(data)
+               this.setState({
+                   studentdata: data
+               })
+			}
+		})
+    }
+
 	onChanging(e){
-		console.log(e.target.defaultValue)
+		console.log(e.target.value)
 		this.setState({
-			[e.target.id]:e.target.value?e.target.value:e.target.defaultValue
+			[e.target.id]:e.target.value
 		})
 	}
 
     render(){
-		console.log(this.state.detail)
+		console.log(this.state.studentdata)
         let style = {
 			dropdown: {
 				width: '100%',
@@ -232,9 +278,11 @@ export default class StudentDetails extends React.Component {
 													/>
 												</div>
 											</div>
-											<FlatButton flat label="Save"  onClick={this.save.bind(this)} className="editButton"/>
-											<FlatButton flat label="Edit"  onClick={this.edit.bind(this)} className="editButton"/>	
-												
+											<div className="btndiv">
+											<FlatButton flat label="Save"  onClick={this.save.bind(this)} style={{display:this.state.saveDisplay}} className="saveButton"/>
+											<FlatButton flat label="Cancel"  onClick={this.cancel.bind(this)} style={{display:this.state.cancelDisplay}} className="cancelButton"/>
+											<FlatButton flat label="Edit"  onClick={this.edit.bind(this)} style={{display:this.state.editDisplay}} className="editButton"/>	
+											</div>	
 											</div>
 						</div>
 						
