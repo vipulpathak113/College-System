@@ -43,7 +43,8 @@ const ENDPOINTS = {
 	HARLABH_DISTRICT_WISE_DATA_COUNT: HOST + 'harlabhdashboard/districtwisedatacount/',
 	HARLABH_COMPARE_ONBOARDING_STATUS: HOST + 'harlabhdashboard/comparing_onboarding_status/',
 	HARLABH_FILTER_SERVICES: HOST + 'harlabhdashboard/filterservices/',
-	EDIT_STUDENT_INFO:HOST+ '/api/students'
+	EDIT_STUDENT_INFO:HOST+ '/api/students',
+	STUDENT_FILTER:HOST+ '/api/students',
 }
 const URL = {
 	COMPARE: "compare",

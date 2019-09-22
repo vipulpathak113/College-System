@@ -1,11 +1,13 @@
 {
-  "name": "easygov",
+  "name": "sarayulabs",
   "version": "1.2.18",
   "private": true,
-  "description": "EasyGov helps you know, apply for and avail benefits from Govt. of India social welfare schemes & services using an Aadhar-based entitlement engine.",
+  "description": "",
   "dependencies": {
+    "@material/select": "^3.2.0",
     "URIjs": "1.16.1",
     "base-64": "^0.1.0",
+    "bootstrap": "^4.0.0-alpha.6",
     "chart.js": "^2.7.2",
     "crypto-js": "3.1.9-1",
     "jquery": "^3.2.1",

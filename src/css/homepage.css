@@ -519,11 +519,12 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
 .content-table-container td {
   font-size: 12px;
   padding: 15px 0;
-  color: rgba(32, 42, 51, 0.8); }
+  color: rgba(32, 42, 51, 0.8);
+  text-align: center; }
 
 .header-content-table th {
   font-size: 12px;
-  text-align: left;
+  text-align: center;
   color: rgba(32, 42, 51, 0.9);
   font-weight: 700; }
 

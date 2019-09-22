@@ -84,7 +84,7 @@ class network {
 			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			enctype: 'multipart/form-data',
-			data: JSON.stringify(formdata),
+			data: formdata,
 			headers: { 'Authorization': 'Basic ' + btoa(email + ":" + password),
 					'Accept': 'application/json',
 					'Content-Type': 'application/json' },

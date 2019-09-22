@@ -7,12 +7,12 @@ import bootupsettings from '../../models/bootupsettings'
 import FlatButton from '../Buttons/flat_button'
 import { Button } from 'react-md'
 import StudentDetails from './student_details'
+import Filter from '../Filter/filter'
 
 
 var data=[],applicationData;
 
 var openViewApplication = (data) => {
-    console.log(data)
 	store.dispatch({ type: "SHOW_VIEW_APPLICATION_DETAILS",  data: data })
 }
 export default class StudentInfo extends React.Component {
@@ -65,10 +65,26 @@ export default class StudentInfo extends React.Component {
 		})
 	}
 
+    componentDidUpdate(prevProps, prevState) {
+        store.subscribe(() => {
+            var response = store.getState()
+            if (response.type === "STUDENT_FILTER") {
+                console.log(response)
+                data= response.results
+                this.setState({
+                    studentdata: data
+                })
+            }
+         
+        
+        
+        })
+      }
+
 
 
     render(){
-        console.log(applicationData)
+        console.log(this.state.studentdata)
        var data= this.state.studentdata
         return (
             
@@ -76,9 +92,11 @@ export default class StudentInfo extends React.Component {
                 {!this.state.openViewApplications ?
 			<div className="right-panel-content-bg" >
                 <h3 className="approve-beneficiary-text">Students</h3>
+                <Filter/>
 				<div >
-					
+               
 								<div className="content-table-container">
+                                { data.length > 0 ?
 									<table cellSpacing="0" cellPadding="0" className="header-content-table">
 										<thead className="content-body-property">
 											<tr height="48">
@@ -91,30 +109,32 @@ export default class StudentInfo extends React.Component {
 												
 											</tr>
 										</thead>
+
+                                        
 										<tbody className="content-body-bottom-property">
-                                        {
-                                     data.length > 0 ?
-                                     data.map((item, i) => {
+                                     {data.map((item, i) => {
                                      return(
                                         <tr className="content-table-row hover-clickable-table" key={i} onClick={openViewApplication.bind(this, item)}>
                                      <td className="table-coloumn-positions">{item.first_name} {item.last_name}</td>
                                      <td className="table-coloumn-positions">{item.profile.roll_number}</td>
                                      <td className="table-coloumn-positions">{item.email}</td>
                                      <td className="table-coloumn-positions">{item.phone_number}</td>
-                                     <td className="table-coloumn-positions">{item.profile.department}</td>
+                                     <td className="table-coloumn-positions">{item.profile.department_details.name}</td>
                                      <td className="table-coloumn-positions">{item.profile.batch_year}</td>
                                      
-                                      </tr>)}):
-                                     <div className="no-record-found-text">
-                                         <h4>No Records Found !!</h4>
-                                     </div>
-                             }
+                                      </tr>)})}
 										</tbody>
+                                        
 									</table>
-								</div> 
+                                    :
+                                    <div className="no-record-found-text">
+                                        <h4>No Records Found !!</h4>
+                                    </div>}  
+                                </div> 
+                              
 				</div>
 			</div>
-            : <StudentDetails data={applicationData} />
+            : <StudentDetails data={applicationData} studentdata={this.state.studentdata} />
         }
             </div>
 		)

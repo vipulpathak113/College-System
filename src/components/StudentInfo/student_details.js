@@ -23,7 +23,18 @@ export default class StudentDetails extends React.Component {
 
 
     goBack() {
-		store.dispatch({ type: "CLOSE_VIEW_APPLICATION_DETAILS"})
+		easygov.send(bootupsettings.ENDPOINTS.STUDENT_INFO,{},"GET_STUDENT_INFO", function (response, component) { })
+		store.subscribe(() => {
+            var response = store.getState()
+			if (response.type === "GET_STUDENT_INFO") {
+				console.log(response)
+                data= response.results
+               this.setState({
+                   studentdata: data
+               })
+			}
+		})
+		store.dispatch({ type: "CLOSE_VIEW_APPLICATION_DETAILS",data: data})
 	}
 
 	edit(){
@@ -90,8 +101,8 @@ console.log(this.props)
                })
 			}
 		})
-    }
-
+	}
+	
 	onChanging(e){
 		console.log(e.target.value)
 		this.setState({
@@ -282,6 +293,7 @@ console.log(this.props)
 											<FlatButton flat label="Save"  onClick={this.save.bind(this)} style={{display:this.state.saveDisplay}} className="saveButton"/>
 											<FlatButton flat label="Cancel"  onClick={this.cancel.bind(this)} style={{display:this.state.cancelDisplay}} className="cancelButton"/>
 											<FlatButton flat label="Edit"  onClick={this.edit.bind(this)} style={{display:this.state.editDisplay}} className="editButton"/>	
+											
 											</div>	
 											</div>
 						</div>

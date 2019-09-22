@@ -59,6 +59,7 @@ export default class Signin extends Component {
 					storage.setCookies(keys.USER_PREFERENCE.TOKEN, response.auth_token)
 					storage.setCookies(keys.USER_PREFERENCE.EMAIL, userIdValue)
 					storage.setCookies(keys.USER_PREFERENCE.PASSWORD, passwordValue)
+					storage.setCookies(keys.USER_PREFERENCE.USER_NAME, response.first_name)
 
 					// debugger;
 					storage.removeItemValue(keys.USER_PREFERENCE.IS_TOKEN_EXPIRED)
@@ -92,6 +93,7 @@ export default class Signin extends Component {
 					storage.setCookies(keys.USER_PREFERENCE.EMAIL, userIdValue)
 					storage.setCookies(keys.USER_PREFERENCE.PASSWORD, passwordValue)
 					storage.removeItemValue(keys.USER_PREFERENCE.IS_TOKEN_EXPIRED)
+					storage.setCookies(keys.USER_PREFERENCE.USER_NAME, response.first_name)
 					window.location.href = "/dashboard"
 			}
 		})
