@@ -216,7 +216,7 @@ class network {
 			token = storage.getCookies(keys.USER_PREFERENCE.TOKEN);
 			email= storage.getCookies(keys.USER_PREFERENCE.EMAIL);
 			password= storage.getCookies(keys.USER_PREFERENCE.PASSWORD);
-
+			console.log(storage.getCookies(keys.USER_PREFERENCE.USER_NAME))
 		}
 		else {
 			token = " ";

@@ -26,7 +26,6 @@ export default class StudentInfo extends React.Component {
     
 
     componentDidMount(){
-        console.log("hello")
         easygov.send(bootupsettings.ENDPOINTS.STUDENT_INFO,{},"GET_STUDENT_INFO", function (response, component) { })
         store.subscribe(() => {
             var response = store.getState()

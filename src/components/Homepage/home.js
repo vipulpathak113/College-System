@@ -11,6 +11,7 @@ import HelpDialog from '../HelpDialog/help_dialog'
 import ImportData from '../ImportData/import'
 import StudentInfo from '../StudentInfo/studentinfo'
 import bootupsettings from '../../models/bootupsettings';
+import Jobs from '../Jobs/jobs'
 import easygov from '../../utility/network'
 import ChangePasswordDialog from '../ChangePasswordDialog/change_password_dialog'
 
@@ -37,7 +38,8 @@ export default class Home extends Component {
 			showHome : false,
 			check : "",
 			import:false,
-			info:false
+			info:false,
+			jobs:false
 		};
 	}
 	openDrawerRight = () => {
@@ -90,7 +92,8 @@ export default class Home extends Component {
 			this.setState({
 				showHome: true,
 				import:true,
-				info:true
+				info:true,
+				jobs:true,
 			})
 
 
@@ -163,14 +166,6 @@ export default class Home extends Component {
 		const { visible, position, view, changePassword } = this.state;
 		const isRight = position === 'right';
 		const closeBtn = <IconButton icon onClick={this.closeDrawer} displayName={isRight ? 'close' : null}></IconButton>;
-		let permissionsArray = {
-			"ViewDocument" : "data.change_review_documents",
-			"ApproveBeneficiary" : "data.change_review_applications",
-			"Monetary" : "data.change_verified_applications",
-			"NonMonetary" : "data.add_non_monetary_beneficiary",
-			"ViewApplication" : "data.add_review_applications",
-			"Dashboard" : "data.dashboard_group"
-		}
 		return (
 			<div className="homepage-bg">
 				<div className="homepage-drawer">
@@ -256,13 +251,17 @@ export default class Home extends Component {
 							}
 
 
-{this.state.import ?<div className={`admin-tab-panel ${this.state.property === 2 ? "active" : ""}`} onClick={this._handleClick.bind(this, 2)}>
-										<h4 className="admin-tab">Import Data</h4>
-									</div>: null}
+							{this.state.import ?<div className={`admin-tab-panel ${this.state.property === 2 ? "active" : ""}`} onClick={this._handleClick.bind(this, 2)}>
+																	<h4 className="admin-tab">Import Data</h4>
+																</div>: null}
 
 									{this.state.info ?<div className={`admin-tab-panel ${this.state.property === 3 ? "active" : ""}`} onClick={this._handleClick.bind(this, 3)}>
 										<h4 className="admin-tab">Student Info</h4>
 									</div>: null}
+
+						{this.state.jobs ?<div className={`admin-tab-panel ${this.state.property === 4 ? "active" : ""}`} onClick={this._handleClick.bind(this, 4)}>
+							<h4 className="admin-tab">Jobs</h4>
+						</div>: null}				
 							
 						</div>
 
@@ -299,7 +298,7 @@ export default class Home extends Component {
 							{
 								this.state.property === 1 ?
 									<HomeView /> : this.state.property === 2 ?
-										<ImportData /> : this.state.property === 3 ?<StudentInfo/>: null
+										<ImportData /> : this.state.property === 3 ?<StudentInfo/>: this.state.property === 4 ?<Jobs/>: null
 							}
 						</div>
 					</div>
