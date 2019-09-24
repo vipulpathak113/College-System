@@ -3731,7 +3731,9 @@ body {
 .editButton {
   float: right;
   background: teal;
-  color: white; }
+  color: white;
+  top: 73px;
+  left: 240px; }
 
 .btndiv {
   display: flex;
@@ -3741,13 +3743,17 @@ body {
   background: mediumturquoise;
   font-weight: 700;
   color: black;
-  right: 50px; }
+  right: 50px;
+  top: 73px;
+  left: 298px; }
 
 .cancelButton {
   background: indianred;
   font-weight: 700;
   color: black;
-  right: 25px; }
+  right: 25px;
+  left: 320px;
+  top: 73px; }
 
 .filter-field {
   display: flex;
@@ -3779,3 +3785,7 @@ body {
   background: lightslategray;
   color: white;
   font-weight: 500; }
+
+.stu-details {
+  font-weight: bold;
+  font-size: large; }

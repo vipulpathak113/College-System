@@ -63,7 +63,10 @@
 .benefit-heading {
   font-weight: 600;
   font-size: 18px;
-  margin: 0; }
+  margin: 0;
+  background: lightskyblue;
+  height: 34px;
+  padding: 4px; }
 
 .upload-heading {
   font-weight: 500;

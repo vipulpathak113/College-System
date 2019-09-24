@@ -61,9 +61,14 @@ export default class StudentDetails extends React.Component {
 			"batch_year": this.state.batch_year?this.state.batch_year:data.profile.batch_year,
 				"department_details": {"name": this.state.departmentname?this.state.departmentname:data.profile.department_details.name},
 			"num_of_backlogs": this.state.num_of_backlogs?this.state.num_of_backlogs:data.profile.num_of_backlogs,
-			"roll_number": this.state.roll_number?this.state.roll_number:data.profile.roll_number
+			"roll_number": this.state.roll_number?this.state.roll_number:data.profile.roll_number,
+			"cleared_backlogs": this.state.cleared_backlogs?this.state.cleared_backlogs:data.profile.cleared_backlogs,
+			"placed_count":this.state.placed_count?this.state.placed_count:data.profile.placed_count,
+			"is_placed": this.state.is_placed===undefined?data.profile.is_placed:this.state.is_placed
 }
+
 	}
+	console.log(this.state.is_placed)
 		this.setState({
 			detail:detail,
 			editDisplay:"block",
@@ -110,6 +115,11 @@ console.log(this.props)
 		})
 	}
 
+	handleChecked (e) {
+		var data= this.props.data
+		this.setState({is_placed: !data.profile.is_placed});
+	  }
+
     render(){
 		console.log(this.state.studentdata)
         let style = {
@@ -143,10 +153,10 @@ console.log(this.props)
 				
 				<div className="outer-container">
 					<div className="schemes-questions-container">
-						<div className="container-heading">Student Name - {data.first_name} {data.last_name}</div>
 						<div className="schems-questions-container-content">
-
+						
 							<div>
+							<div className="stu-details">PERSONAL INFO</div>
 											<div className="field-containerR">
 												<p style={{ margin: "3px" }}>First Name</p>
 												<div className="beneficiary-details-textfields">
@@ -175,6 +185,22 @@ console.log(this.props)
 											</div>
 
 											<div className="field-container">
+												<p style={{ margin: "3px" }}>Address</p>
+												<div className="beneficiary-details-textfields">
+													<TextField
+														id="address"
+														style={style.textfield1}
+														disabled
+														defaultValue={data.profile.address}
+														onChange={this.onChanging.bind(this,event)}
+														type="text"
+													/>
+												</div>
+											</div>
+
+											<div className="stu-details">BATCH DETAIL</div>
+
+											<div className="field-container">
 												<p style={{ margin: "3px" }}>Roll Number</p>
 												<div className="beneficiary-details-textfields">
 													<TextField
@@ -188,20 +214,7 @@ console.log(this.props)
 												</div>
 											</div>
 											
-                                     
-											<div className="field-container">
-												<p style={{ margin: "3px" }}>Address</p>
-												<div className="beneficiary-details-textfields">
-													<TextField
-														id="address"
-														style={style.textfield1}
-														disabled
-														defaultValue={data.profile.address}
-														onChange={this.onChanging.bind(this,event)}
-														type="text"
-													/>
-												</div>
-											</div>
+                                    
 											<div className="field-container">
 												<p style={{ margin: "3px" }}>Batch Year</p>
 												<div className="beneficiary-details-textfields">
@@ -216,11 +229,38 @@ console.log(this.props)
 												</div>
 											</div>
 
+											<div className="field-container">
+												<p style={{ margin: "3px" }}>Number of Backlogs</p>
+												<div className="beneficiary-details-textfields">
+													<TextField
+														id="num_of_backlogs"
+														style={style.textfield1}
+														disabled
+														defaultValue={data.profile.num_of_backlogs}
+														type="text"
+														onChange={this.onChanging.bind(this,event)}
+													/>
+												</div>
+											</div>
+
+											<div className="field-container">
+												<p style={{ margin: "3px" }}>Placed Count</p>
+												<div className="beneficiary-details-textfields">
+													<TextField
+														id="placed_count"
+														style={style.textfield1}
+														disabled
+														defaultValue={data.profile.placed_count}
+														type="text"
+														onChange={this.onChanging.bind(this,event)}
+													/>
+												</div>
+											</div>
 											
 											</div>
 
                                                   <div>
-											<div className="field-containerL">
+											<div className="field-containerL" style={{marginTop: "26px"}}>
 												<p style={{ margin: "3px" }}>Last Name</p>
 												<div className="beneficiary-details-textfields">
 													<TextField
@@ -248,7 +288,7 @@ console.log(this.props)
 												</div>
 											</div>
 
-											<div className="field-containerL">
+											<div className="field-containerL" style={{marginTop: "111px"}}>
 												<p style={{ margin: "3px" }}>Aggregate</p>
 												<div className="beneficiary-details-textfields">
 													<TextField
@@ -277,18 +317,23 @@ console.log(this.props)
 											</div>
 
 											<div className="field-containerL">
-												<p style={{ margin: "3px" }}>Number of Backlogs</p>
+												<p style={{ margin: "3px" }}>Cleared Backlogs</p>
 												<div className="beneficiary-details-textfields">
 													<TextField
-														id="num_of_backlogs"
+														id="cleared_backlogs"
 														style={style.textfield1}
 														disabled
-														defaultValue={data.profile.num_of_backlogs}
+														defaultValue={data.profile.cleared_backlogs}
 														type="text"
 														onChange={this.onChanging.bind(this,event)}
 													/>
 												</div>
 											</div>
+
+											<div style={{marginLeft: "92px",
+											marginTop: "30px"}}>Is Placed: <input type="checkbox"
+										    onChange={ this.handleChecked.bind(this) } disabled defaultChecked={data.profile.is_placed && data.profile.placed_count>=1}/></div>
+
 											<div className="btndiv">
 											<FlatButton flat label="Save"  onClick={this.save.bind(this)} style={{display:this.state.saveDisplay}} className="saveButton"/>
 											<FlatButton flat label="Cancel"  onClick={this.cancel.bind(this)} style={{display:this.state.cancelDisplay}} className="cancelButton"/>
