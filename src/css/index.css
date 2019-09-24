@@ -1075,7 +1075,7 @@ html {
     font-size: 13px;
     height: 32px;
     margin-bottom: 0;
-    margin-top: -8px; }
+    margin-top: 0; }
   .md-btn--text::before, .md-btn--text::after {
     display: none;
     visibility: hidden; }
