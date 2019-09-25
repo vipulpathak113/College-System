@@ -3732,8 +3732,8 @@ body {
   float: right;
   background: teal;
   color: white;
-  top: 73px;
-  left: 240px; }
+  top: 601px;
+  right: 134px; }
 
 .btndiv {
   display: flex;
@@ -3743,17 +3743,15 @@ body {
   background: mediumturquoise;
   font-weight: 700;
   color: black;
-  right: 50px;
-  top: 73px;
-  left: 298px; }
+  top: 601px;
+  right: 134px; }
 
 .cancelButton {
   background: indianred;
   font-weight: 700;
   color: black;
-  right: 25px;
-  left: 320px;
-  top: 73px; }
+  top: 569px;
+  right: 20px; }
 
 .filter-field {
   display: flex;

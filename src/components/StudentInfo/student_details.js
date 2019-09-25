@@ -334,18 +334,22 @@ console.log(this.props)
 											marginTop: "30px"}}>Is Placed: <input type="checkbox"
 										    onChange={ this.handleChecked.bind(this) } disabled defaultChecked={data.profile.is_placed && data.profile.placed_count>=1}/></div>
 
-											<div className="btndiv">
+											
+											</div>
+											<div>
 											<FlatButton flat label="Save"  onClick={this.save.bind(this)} style={{display:this.state.saveDisplay}} className="saveButton"/>
 											<FlatButton flat label="Cancel"  onClick={this.cancel.bind(this)} style={{display:this.state.cancelDisplay}} className="cancelButton"/>
 											<FlatButton flat label="Edit"  onClick={this.edit.bind(this)} style={{display:this.state.editDisplay}} className="editButton"/>	
 											
-											</div>	
 											</div>
+										
 						</div>
 						
 					</div>
 					
+					
                     </div>
+						
 					
             </div>
         )
