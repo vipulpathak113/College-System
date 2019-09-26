@@ -52,14 +52,14 @@ export default class StudentFilter extends React.Component {
     return (
       <div className="right-panel-filter">
         <div className="filter-field">
-          <div className="filter-div">Filter By: </div>
-          <div>
+          <div className="dropdiv">
             Year
             <select
               value={this.state.year}
               onChange={this.filterSelection.bind(this)}
               className="selectstyle"
               name="year"
+              style={{ width: "116px" }}
             >
               <option value="">Select Year</option>
               <option value="2017">2017</option>
@@ -68,7 +68,7 @@ export default class StudentFilter extends React.Component {
               <option value="2020">2020</option>
             </select>
           </div>
-          <div>
+          <div className="dropdiv">
             Department
             <select
               className="mdb-select md-form"
@@ -83,7 +83,7 @@ export default class StudentFilter extends React.Component {
             </select>
           </div>
 
-          <div>
+          <div className="dropdiv">
             Course
             <select
               className="mdb-select md-form"

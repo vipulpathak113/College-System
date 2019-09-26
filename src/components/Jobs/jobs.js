@@ -97,11 +97,11 @@ export default class Jobs extends React.Component {
                   >
                     <thead className="content-body-property">
                       <tr height="48">
-                        <th className="table-coloumn-positions">DATE OF DRIVE</th>
+                        <th className="table-coloumn-positions">
+                          DATE OF DRIVE
+                        </th>
                         <th className="table-coloumn-positions">COMPANY</th>
                         <th className="table-coloumn-positions">PROFILE</th>
-                        <th className="table-coloumn-positions">SKILLS REQUIRED</th>
-                        <th className="table-coloumn-positions">JOB DESCRIPTION</th>
                       </tr>
                     </thead>
 

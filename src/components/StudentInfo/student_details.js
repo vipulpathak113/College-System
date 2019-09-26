@@ -156,7 +156,7 @@ console.log(this.props)
 						<div className="schems-questions-container-content">
 						
 							<div>
-							<div className="stu-details">PERSONAL INFO</div>
+							<div className="stu-details">Personal Info</div>
 											<div className="field-containerR">
 												<p style={{ margin: "3px" }}>First Name</p>
 												<div className="beneficiary-details-textfields">
@@ -198,7 +198,7 @@ console.log(this.props)
 												</div>
 											</div>
 
-											<div className="stu-details">BATCH DETAIL</div>
+											<div className="stu-details">Batch Detail</div>
 
 											<div className="field-container">
 												<p style={{ margin: "3px" }}>Roll Number</p>
