@@ -164,7 +164,7 @@ console.log(this.props)
 														id="first_name"
 														style={style.textfield1}
 														disabled
-														defaultValue={data.first_name}
+														defaultValue={data.first_name?data.first_name:""}
 														onChange={this.onChanging.bind(this,event)}
 														type="text"
 													/>
@@ -177,7 +177,7 @@ console.log(this.props)
 														id="email"
 														style={style.textfield1}
 														disabled
-														defaultValue={data.email}
+														defaultValue={data.email?data.email:""}
 														onChange={this.onChanging.bind(this,event)}
 														type="text"
 													/>
@@ -191,7 +191,7 @@ console.log(this.props)
 														id="address"
 														style={style.textfield1}
 														disabled
-														defaultValue={data.profile.address}
+														defaultValue={data.profile.address?data.profile.address:""}
 														onChange={this.onChanging.bind(this,event)}
 														type="text"
 													/>
@@ -207,7 +207,7 @@ console.log(this.props)
 														id="roll_number"
 														style={style.textfield1}
 														disabled
-														defaultValue={data.profile.roll_number}
+														defaultValue={data.profile.roll_number?data.profile.roll_number:""}
 														onChange={this.onChanging.bind(this,event)}
 														type="text"
 													/>
@@ -222,7 +222,7 @@ console.log(this.props)
 														id="batch_year"
 														style={style.textfield1}
 														disabled
-														defaultValue={data.profile.batch_year}
+														defaultValue={data.profile.batch_year?data.profile.batch_year:""}
 														onChange={this.onChanging.bind(this,event)}
 														type="text"
 													/>
