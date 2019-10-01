@@ -19,24 +19,24 @@ export default class Jobs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      studentdata: [],
+      jobsdata: [],
       openViewApplications: false
     };
   }
 
   componentDidMount() {
     easygov.send(
-      bootupsettings.ENDPOINTS.STUDENT_INFO,
+      bootupsettings.ENDPOINTS.ALL_JOBS,
       {},
-      "GET_STUDENT_INFO",
+      "ALL_JOBS",
       function(response, component) {}
     );
     store.subscribe(() => {
       var response = store.getState();
-      if (response.type === "GET_STUDENT_INFO") {
+      if (response.type === "ALL_JOBS") {
         data = response.results;
         this.setState({
-          studentdata: data
+          jobsdata: data
         });
       }
     });
@@ -67,20 +67,20 @@ export default class Jobs extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    store.subscribe(() => {
-      var response = store.getState();
-      if (response.type === "STUDENT_FILTER") {
-        console.log(response);
-        data = response.results;
-        this.setState({
-          studentdata: data
-        });
-      }
-    });
+    // store.subscribe(() => {
+    //   var response = store.getState();
+    //   if (response.type === "STUDENT_FILTER") {
+    //     console.log(response);
+    //     data = response.results;
+    //     this.setState({
+    //       studentdata: data
+    //     });
+    //   }
+    // });
   }
 
   render() {
-    var data = this.state.studentdata;
+    var data = this.state.jobsdata;
     return (
       <div>
         {!this.state.openViewApplications ? (
@@ -107,29 +107,22 @@ export default class Jobs extends React.Component {
 
                     <tbody className="content-body-bottom-property">
                       {data.map((item, i) => {
+                        console.log(data)
                         return (
                           <tr
                             className="content-table-row hover-clickable-table"
                             key={i}
                             onClick={openViewApplication.bind(this, item)}
                           >
-                            <td className="table-coloumn-positions">
-                              {item.first_name} {item.last_name}
+
+<td className="table-coloumn-positions">
+                              {item.date_of_drive}
                             </td>
                             <td className="table-coloumn-positions">
-                              {item.profile.roll_number}
+                              {item.company}
                             </td>
                             <td className="table-coloumn-positions">
-                              {item.email}
-                            </td>
-                            <td className="table-coloumn-positions">
-                              {item.phone_number}
-                            </td>
-                            <td className="table-coloumn-positions">
-                              {item.profile.department_details.name}
-                            </td>
-                            <td className="table-coloumn-positions">
-                              {item.profile.batch_year}
+                              {item.profile}
                             </td>
                           </tr>
                         );
@@ -147,7 +140,7 @@ export default class Jobs extends React.Component {
         ) : (
           <JobDetails
             data={applicationData}
-            studentdata={this.state.studentdata}
+            studentdata={this.state.jobsdata}
           />
         )}
       </div>
