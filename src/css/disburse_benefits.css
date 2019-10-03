@@ -56,17 +56,17 @@
   float: left; }
 
 .benefit-description {
-  width: 100%;
+  width: 97%;
   padding-top: 10px;
   height: 40px; }
 
 .benefit-heading {
-  font-weight: 600;
   font-size: 18px;
   margin: 0;
-  background: lightskyblue;
+  background: lightslategray;
   height: 34px;
-  padding: 4px; }
+  padding: 4px 4px 4px 16px;
+  color: white; }
 
 .upload-heading {
   font-weight: 500;

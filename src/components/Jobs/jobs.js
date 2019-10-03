@@ -25,12 +25,10 @@ export default class Jobs extends React.Component {
   }
 
   componentDidMount() {
-    easygov.send(
-      bootupsettings.ENDPOINTS.ALL_JOBS,
-      {},
-      "ALL_JOBS",
-      function(response, component) {}
-    );
+    easygov.send(bootupsettings.ENDPOINTS.ALL_JOBS, {}, "ALL_JOBS", function(
+      response,
+      component
+    ) {});
     store.subscribe(() => {
       var response = store.getState();
       if (response.type === "ALL_JOBS") {
@@ -55,7 +53,7 @@ export default class Jobs extends React.Component {
           openViewApplications: false
         });
 
-        if (response.type === "EDIT_STUDENT_INFO") {
+        if (response.type === "EDIT_JOB") {
           data = response;
           this.setState({
             applicationData: response.data
@@ -82,8 +80,8 @@ export default class Jobs extends React.Component {
       <div>
         {!this.state.openViewApplications ? (
           <div className="right-panel-content-bg">
-            <h3 className="approve-beneficiary-text">Jobs Announcement</h3>
-            <JobFilter data= {this.state.jobsdata} />
+            <h3 className="approve-beneficiary-text">Job Announcement</h3>
+            <JobFilter data={this.state.jobsdata} />
             <div>
               <div className="content-table-container">
                 {data.length > 0 ? (
@@ -112,8 +110,7 @@ export default class Jobs extends React.Component {
                             key={i}
                             onClick={openViewApplication.bind(this, item)}
                           >
-
-<td className="table-coloumn-positions">
+                            <td className="table-coloumn-positions">
                               {item.date_of_drive}
                             </td>
                             <td className="table-coloumn-positions">
@@ -123,7 +120,7 @@ export default class Jobs extends React.Component {
                             <td className="table-coloumn-positions">
                               {item.venue}
                             </td>
-                          
+
                             <td className="table-coloumn-positions">
                               {item.company}
                             </td>

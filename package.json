@@ -20,10 +20,12 @@
     "react-csv": "^1.0.14",
     "react-dom": "15.5.4",
     "react-file-reader": "^1.1.4",
+    "react-input-autosize": "^2.2.2",
     "react-md": "1.0.18",
     "react-redux": "5.0.6",
     "react-router-dom": "4.1.1",
     "react-sanfona": "1.0.6",
+    "react-textarea-autosize": "^7.1.0",
     "redux": "3.7.2",
     "redux-form": "7.0.3"
   },

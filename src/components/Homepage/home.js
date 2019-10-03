@@ -281,14 +281,10 @@ export default class Home extends Component {
 							</div>
 							<div className="admin-greet-name dropdown">
 								<div className="admin-greet-text-container">
-									<h5 className="admin-greet-text">Hello, &nbsp; <span className="admin-name-text"> {storage.getItemValue(keys.USER_PREFERENCE.USER_NAME)}</span> <i className=" material-icons admin-activity-container">keyboard_arrow_down</i></h5>
-									{/* <h6>( {storage.getItemValue(keys.USER_PREFERENCE.ISSUER_DIST)} )</h6> */}
+									<h5 className="admin-greet-text">Hello, &nbsp; <span className="admin-name-text"> {storage.getItemValue(keys.USER_PREFERENCE.USER_NAME)?storage.getItemValue(keys.USER_PREFERENCE.USER_NAME):"Admin"}</span> <i className=" material-icons admin-activity-container">keyboard_arrow_down</i></h5>
 								</div>
 								<div className="triangle"></div>
 								<div className="dropdown-content">
-									{/*<a style={{ display: "none" }}><span className="material-icons" style={{ fontSize: '14px' }}>receipt</span><span className="change-passowrd">User Manual</span></a>
-									<a onClick={this.openDialog} ><span className="material-icons" style={{ fontSize: '14px' }}>call</span><span className="change-passowrd">Help/Support</span></a>
-									<div className="admin-activity-divider"></div>*/}
 									<a onClick={this.openChangePasswordDialog}> <span className="material-icons" style={{ fontSize: '14px' }}>lock</span> <span className="change-passowrd">Change Password</span></a>
 									<a onClick={this.logoutUser.bind(this)}><span className="material-icons" style={{ fontSize: '14px' }}>power_settings_new</span><span className="change-passowrd">Log Out</span></a>
 								</div>

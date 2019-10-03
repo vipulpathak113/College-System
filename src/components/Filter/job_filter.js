@@ -9,61 +9,57 @@ import easygov from "../../utility/network";
 import $ from "jquery";
 import FlatButton from "../Buttons/flat_button";
 
-var data=[]
+var data = [];
 export default class JobFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    status
+      status
     };
   }
 
   filterSelection(e) {
-    this.setState({ [e.target.name]: e.target.value },()=>{
-      easygov.send(
-        bootupsettings.ENDPOINTS.ALL_JOBS,
-        {},
-        "ALL_JOBS",
-        function(response, component) {}
-      );
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      easygov.send(bootupsettings.ENDPOINTS.ALL_JOBS, {}, "ALL_JOBS", function(
+        response,
+        component
+      ) {});
       store.subscribe(() => {
         var response = store.getState();
         if (response.type === "ALL_JOBS") {
           data = response.results;
-          this.setState({
-            jobsdata: data
-          },()=>{
-            let filterData= this.state.jobsdata;
-            if(this.state.status){
-            let filteredData= filterData.filter(item=> item.status=== this.state.status)
-             store.dispatch({ type: "JOB_FILTER", data: filteredData })}
-             else{
-              store.dispatch({ type: "JOB_FILTER", data: filterData })
-             }
-          });
+          this.setState(
+            {
+              jobsdata: data
+            },
+            () => {
+              let filterData = this.state.jobsdata;
+              if (this.state.status) {
+                let filteredData = filterData.filter(
+                  item => item.status === this.state.status
+                );
+                store.dispatch({ type: "JOB_FILTER", data: filteredData });
+              } else {
+                store.dispatch({ type: "JOB_FILTER", data: filterData });
+              }
+            }
+          );
         }
       });
-    }
-    );
-
-  
+    });
   }
 
   clearfilter() {
     this.setState({
-      status:""
+      status: ""
     });
-    easygov.send(
-      bootupsettings.ENDPOINTS.ALL_JOBS,
-      {},
-      "ALL_JOBS",
-      function(response, component) {}
-    );
+    easygov.send(bootupsettings.ENDPOINTS.ALL_JOBS, {}, "ALL_JOBS", function(
+      response,
+      component
+    ) {});
   }
 
-
   render() {
-
     return (
       <div className="right-panel-filter">
         <div className="filter-field">
@@ -83,7 +79,7 @@ export default class JobFilter extends React.Component {
               <option value="cancelled">Cancelled</option>
             </select>
           </div>
-    
+
           <FlatButton
             flat
             label="CLEAR FILTER"
