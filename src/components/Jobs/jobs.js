@@ -57,7 +57,6 @@ export default class Jobs extends React.Component {
 
         if (response.type === "EDIT_STUDENT_INFO") {
           data = response;
-          console.log(data);
           this.setState({
             applicationData: response.data
           });
@@ -67,16 +66,14 @@ export default class Jobs extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // store.subscribe(() => {
-    //   var response = store.getState();
-    //   if (response.type === "STUDENT_FILTER") {
-    //     console.log(response);
-    //     data = response.results;
-    //     this.setState({
-    //       studentdata: data
-    //     });
-    //   }
-    // });
+    store.subscribe(() => {
+      var response = store.getState();
+      if (response.type === "JOB_FILTER") {
+        this.setState({
+          jobsdata: response.data
+        });
+      }
+    });
   }
 
   render() {
@@ -86,7 +83,7 @@ export default class Jobs extends React.Component {
         {!this.state.openViewApplications ? (
           <div className="right-panel-content-bg">
             <h3 className="approve-beneficiary-text">Jobs Announcement</h3>
-            <JobFilter />
+            <JobFilter data= {this.state.jobsdata} />
             <div>
               <div className="content-table-container">
                 {data.length > 0 ? (
@@ -107,7 +104,6 @@ export default class Jobs extends React.Component {
 
                     <tbody className="content-body-bottom-property">
                       {data.map((item, i) => {
-                        console.log(data)
                         return (
                           <tr
                             className="content-table-row hover-clickable-table"

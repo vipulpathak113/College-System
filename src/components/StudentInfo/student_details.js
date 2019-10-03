@@ -27,7 +27,6 @@ export default class StudentDetails extends React.Component {
 		store.subscribe(() => {
             var response = store.getState()
 			if (response.type === "GET_STUDENT_INFO") {
-				console.log(response)
                 data= response.results
                this.setState({
                    studentdata: data
@@ -68,7 +67,6 @@ export default class StudentDetails extends React.Component {
 }
 
 	}
-	console.log(this.state.is_placed)
 		this.setState({
 			detail:detail,
 			editDisplay:"block",
@@ -94,13 +92,11 @@ export default class StudentDetails extends React.Component {
 	}
 
 	componentDidMount(){
-console.log(this.props)
         easygov.sendGet(bootupsettings.ENDPOINTS.STUDENT_PROFILE,this.props.data.id,"GET_STUDENT_PROFILE", function (response, component) { })
         store.subscribe(() => {
             var response = store.getState()
 			if (response.type === "GET_STUDENT_PROFILE") {
 				data= response
-				console.log(data)
                this.setState({
                    studentdata: data
                })
@@ -109,7 +105,6 @@ console.log(this.props)
 	}
 	
 	onChanging(e){
-		console.log(e.target.value)
 		this.setState({
 			[e.target.id]:e.target.value
 		})
@@ -121,7 +116,6 @@ console.log(this.props)
 	  }
 
     render(){
-		console.log(this.state.studentdata)
         let style = {
 			dropdown: {
 				width: '100%',

@@ -57,7 +57,6 @@ export default class StudentInfo extends React.Component {
 
         if (response.type === "EDIT_STUDENT_INFO") {
           data = response;
-          console.log(data);
           this.setState({
             applicationData: response.data
           });
@@ -70,7 +69,6 @@ export default class StudentInfo extends React.Component {
     store.subscribe(() => {
       var response = store.getState();
       if (response.type === "STUDENT_FILTER") {
-        console.log(response);
         data = response.results;
         this.setState({
           studentdata: data
@@ -80,7 +78,6 @@ export default class StudentInfo extends React.Component {
   }
 
   render() {
-    console.log(this.state.studentdata);
     var data = this.state.studentdata;
     return (
       <div>

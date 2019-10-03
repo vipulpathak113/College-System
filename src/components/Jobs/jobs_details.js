@@ -27,7 +27,6 @@ export default class JobDetails extends React.Component {
 		store.subscribe(() => {
             var response = store.getState()
 			if (response.type === "ALL_JOBS") {
-				console.log(response)
                 data= response.results
                this.setState({
                    jobsdata: data
@@ -68,7 +67,6 @@ export default class JobDetails extends React.Component {
 }
 
 	}
-	console.log(this.state.is_placed)
 		this.setState({
 			detail:detail,
 			editDisplay:"block",
@@ -94,7 +92,6 @@ export default class JobDetails extends React.Component {
 	}
 	
 	onChanging(e){
-		console.log(e.target.value)
 		this.setState({
 			[e.target.id]:e.target.value
 		})
@@ -106,7 +103,6 @@ export default class JobDetails extends React.Component {
 	  }
 
     render(){
-        console.log(this.props.data)
         let style = {
 			dropdown: {
 				width: '100%',

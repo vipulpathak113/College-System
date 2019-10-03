@@ -51,7 +51,9 @@ const ENDPOINTS = {
   HARLABH_FILTER_SERVICES: HOST + "harlabhdashboard/filterservices/",
   EDIT_STUDENT_INFO: HOST + "/api/students",
   STUDENT_FILTER: HOST + "/api/students",
-  ALL_JOBS: HOST + "/api/jobs"
+  ALL_JOBS: HOST + "/api/jobs",
+  GET_SINGLE_JOB: HOST + "/api/jobs",
+  JOB_FILTER: HOST + "/api/students",
 };
 const URL = {
   COMPARE: "compare",
