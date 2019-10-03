@@ -97,6 +97,8 @@ export default class Jobs extends React.Component {
                         <th className="table-coloumn-positions">
                           DATE OF DRIVE
                         </th>
+                        <th className="table-coloumn-positions">TIME</th>
+                        <th className="table-coloumn-positions">VENUE</th>
                         <th className="table-coloumn-positions">COMPANY</th>
                         <th className="table-coloumn-positions">PROFILE</th>
                       </tr>
@@ -114,6 +116,14 @@ export default class Jobs extends React.Component {
 <td className="table-coloumn-positions">
                               {item.date_of_drive}
                             </td>
+                            <td className="table-coloumn-positions">
+                              {item.time}
+                            </td>
+
+                            <td className="table-coloumn-positions">
+                              {item.venue}
+                            </td>
+                          
                             <td className="table-coloumn-positions">
                               {item.company}
                             </td>

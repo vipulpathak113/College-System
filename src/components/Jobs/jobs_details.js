@@ -103,6 +103,7 @@ export default class JobDetails extends React.Component {
 	  }
 
     render(){
+		console.log(this.props.data)
         let style = {
 			dropdown: {
 				width: '100%',
@@ -146,6 +147,20 @@ export default class JobDetails extends React.Component {
 														style={style.textfield1}
 														disabled
 														defaultValue={data.company?data.company:""}
+														onChange={this.onChanging.bind(this,event)}
+														type="text"
+													/>
+												</div>
+											</div>
+
+											<div className="field-containerR">
+												<p style={{ margin: "3px" }}>Date of Drive</p>
+												<div className="beneficiary-details-textfields">
+													<TextField
+														id="first_name"
+														style={style.textfield1}
+														disabled
+														defaultValue={data.date_of_drive?data.date_of_drive:""}
 														onChange={this.onChanging.bind(this,event)}
 														type="text"
 													/>

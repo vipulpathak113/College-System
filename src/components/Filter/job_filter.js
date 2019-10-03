@@ -67,8 +67,7 @@ export default class JobFilter extends React.Component {
     return (
       <div className="right-panel-filter">
         <div className="filter-field">
-          <div className="filter-div">Filter By: </div>
-          <div>
+          <div className="dropdiv">
             Status
             <select
               value={this.state.status}
