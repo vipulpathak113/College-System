@@ -142,7 +142,7 @@ let translation = {
 
                 var translated_response_dict = {};
                 var response_object = "";
-                //"http://staging.easygov.co.in/translation/"
+                //"http://staging.network.co.in/translation/"
                 $.ajax({
                     type: 'POST',
                     url: urlKeys.translation,

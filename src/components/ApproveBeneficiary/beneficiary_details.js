@@ -6,7 +6,7 @@ import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import gallery from '../../img/gallery.svg'
 
 var applicationData, beneficiaryDocs = "Beneficiary's Documents", currentComponentValue
@@ -38,7 +38,7 @@ export default class BeneficiaryDetails extends React.Component {
 	};
 
 	componentWillMount() {
-		easygov.send(bootupsettings.ENDPOINTS.GET_SINGLE_APPLICATION, { "applicationId": applicationData.id, "sgmId": applicationData.sgmId }, "GET_SINGLE_APPLICATION", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.GET_SINGLE_APPLICATION, { "applicationId": applicationData.id, "sgmId": applicationData.sgmId }, "GET_SINGLE_APPLICATION", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "GET_SINGLE_APPLICATION") {
@@ -60,7 +60,7 @@ export default class BeneficiaryDetails extends React.Component {
 		let message = document.getElementById('onHoldMessageField').value
 
 		if (message !== "") {
-			easygov.send(bootupsettings.ENDPOINTS.HOLD_BENEFICIARY, { "applicationId": applicationData.id, "messageData": message }, "HOLD_BENEFICIARY", function (response, component) { })
+			network.send(bootupsettings.ENDPOINTS.HOLD_BENEFICIARY, { "applicationId": applicationData.id, "messageData": message }, "HOLD_BENEFICIARY", function (response, component) { })
 			store.subscribe(() => {
 				var response = store.getState()
 				if (response.type === "HOLD_BENEFICIARY") {
@@ -85,7 +85,7 @@ export default class BeneficiaryDetails extends React.Component {
 	handleApproveAction() {
 		let array = []
 		array.push(applicationData.id )
-		easygov.send(bootupsettings.ENDPOINTS.ACTIVE_BENEFICIARY, { "applicationId": array }, "ACTIVE_BENEFICIARY", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.ACTIVE_BENEFICIARY, { "applicationId": array }, "ACTIVE_BENEFICIARY", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "ACTIVE_BENEFICIARY") {
@@ -103,7 +103,7 @@ export default class BeneficiaryDetails extends React.Component {
 
 	getDocument = (event) => {
 		// let docInfo = this.state.applicationDocs.find((item) => (item.fieldDisplayName === event.target.value))
-		easygov.send(bootupsettings.ENDPOINTS.GET_SINGLE_DOCUMENT, { "usDocId": parseInt(event.target.value) }, "GET_SINGLE_DOCUMENT", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.GET_SINGLE_DOCUMENT, { "usDocId": parseInt(event.target.value) }, "GET_SINGLE_DOCUMENT", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "GET_SINGLE_DOCUMENT") {

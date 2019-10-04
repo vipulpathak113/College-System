@@ -1,12 +1,12 @@
 import React from 'react'
-import easygov from './network'
+import network from './network'
 import store from './store'
 import bootupsettings from '../models/bootupsettings'
 import get_service_details from './get_service_details'
 
 var response
 const get_user_documents_api = (callback) => {
-  easygov.send_get_request("GET", bootupsettings.ENDPOINTS.GET_USER_DOCS, "GET_USER_DOCS", function (response, component) {
+  network.send_get_request("GET", bootupsettings.ENDPOINTS.GET_USER_DOCS, "GET_USER_DOCS", function (response, component) {
   })
   store.subscribe(() => {
     var response = store.getState()

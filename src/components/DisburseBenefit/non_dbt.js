@@ -4,7 +4,7 @@ import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import { CSVLink } from 'react-csv'
 import FilterNonDbtApplication from '../../utility/filter_non_dbt_application'
 
@@ -35,7 +35,7 @@ export default class NonDBT extends React.Component {
 	}
 
 	getDbtApplications() {
-		easygov.send(bootupsettings.ENDPOINTS.GET_NON_DBT_APPLICATIONS, "", "GET_NON_DBT_APPLICATIONS")
+		network.send(bootupsettings.ENDPOINTS.GET_NON_DBT_APPLICATIONS, "", "GET_NON_DBT_APPLICATIONS")
 	}
 
 	handleTabChange(val) {
@@ -79,7 +79,7 @@ export default class NonDBT extends React.Component {
 	}
 
 	handleAssignTo() {
-		easygov.send(bootupsettings.ENDPOINTS.ASSIGN_BENEFIT, { "user_id": JSON.parse(selectedUser).user_id, "benefit_id": selectedBenefitId }, "ASSIGN_BENEFIT")
+		network.send(bootupsettings.ENDPOINTS.ASSIGN_BENEFIT, { "user_id": JSON.parse(selectedUser).user_id, "benefit_id": selectedBenefitId }, "ASSIGN_BENEFIT")
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "ASSIGN_BENEFIT") {
@@ -119,7 +119,7 @@ export default class NonDBT extends React.Component {
 			status : appStatus,
 			pageNumber : currentPage.toString()
 		}
-		easygov.send(bootupsettings.ENDPOINTS.GET_NON_DBT_APPLICATIONS, searchObj, "GET_NON_DBT_APPLICATIONS")
+		network.send(bootupsettings.ENDPOINTS.GET_NON_DBT_APPLICATIONS, searchObj, "GET_NON_DBT_APPLICATIONS")
 	}
 
 	setCurrentPage(val, applications, totalPages) {
@@ -174,7 +174,7 @@ export default class NonDBT extends React.Component {
 						nonDbtApplications: response.data.userApplications.objects
 					})
 					if (response.data.is_po && response.data.userApplications.objects.length > 0 && appStatus === "active_beneficiary") {
-						easygov.send(bootupsettings.ENDPOINTS.GET_FACILITATOR_USER, "", "GET_FACILITATOR_USER")
+						network.send(bootupsettings.ENDPOINTS.GET_FACILITATOR_USER, "", "GET_FACILITATOR_USER")
 					}
 				}
 				else if (response.code === 401 && response.message.toLowerCase().includes("token")) {

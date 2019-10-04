@@ -3,7 +3,7 @@ import NonDBT from './non_dbt'
 import DBT from './dbt'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import NonDBTCompleteTask from './non_dbt_complete_task'
 import NonDBTCompletedTask from './non_dbt_completed_task_details'
 
@@ -35,7 +35,7 @@ export default class MonetaryBenefits extends React.Component {
     }
 
     componentWillMount() {
-        // easygov.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, "", "GET_DBT_APPLICATIONS", function (response, component) { })
+        // network.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, "", "GET_DBT_APPLICATIONS", function (response, component) { })
         store.subscribe(() => {
             var response = store.getState()
             if (response.type === "SHOW_NON_DBT_COMPLETE_TASK") {
@@ -48,7 +48,7 @@ export default class MonetaryBenefits extends React.Component {
             }
             else if (response.type === "CLOSE_NON_DBT_COMPLETE_TASK") {
                 completeTask = false
-                easygov.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, "", "GET_DBT_APPLICATIONS", function (response, component) { })
+                network.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, "", "GET_DBT_APPLICATIONS", function (response, component) { })
                 lastTab = 1
                 this.setState({
                     showCompleteTask: false,
@@ -65,7 +65,7 @@ export default class MonetaryBenefits extends React.Component {
                 })
             }
             else if (response.type === "CLOSE_NON_DBT_COMPLETED_TASK") {
-                easygov.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, "", "GET_DBT_APPLICATIONS", function (response, component) { })
+                network.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, "", "GET_DBT_APPLICATIONS", function (response, component) { })
                 completedTasks = false
                 lastTab = 2
                 this.setState({

@@ -2,7 +2,7 @@ import React from 'react'
 import { TextField } from 'react-md'
 import FlatButton from '../components/Buttons/flat_button'
 import style from './style'
-import easygov from './network'
+import network from './network'
 import store from './store'
 import bootupsettings from '../models/bootupsettings'
 import get_service_details from './get_service_details'
@@ -18,13 +18,13 @@ function getValue(event) {
 function clearSearchResults() {
 	storage.removeItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)
 	document.getElementById('searchbar').value=""
-	easygov.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, {"status": pageStatus, "searchTerm": "", "searchType": ""}, "GET_DBT_APPLICATIONS", function (response, component) { })
+	network.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, {"status": pageStatus, "searchTerm": "", "searchType": ""}, "GET_DBT_APPLICATIONS", function (response, component) { })
 }
 function searchApplications() {
 	var searchPhrase = document.getElementById('searchbar').value
 	if(searchKey !== "" && searchPhrase !== ""){
 		storage.setItemValue(keys.USER_PREFERENCE.SEARCH_QUERY, JSON.stringify({"type": searchKey, "value": searchPhrase}))
-		easygov.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, { "status": pageStatus, "searchTerm": searchPhrase, "searchType": searchKey }, "GET_DBT_APPLICATIONS", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, { "status": pageStatus, "searchTerm": searchPhrase, "searchType": searchKey }, "GET_DBT_APPLICATIONS", function (response, component) { })
 	}
 	else if (searchPhrase === "" && searchKey !== "") {
 		window.alert("Please enter some text in the text field to search.")

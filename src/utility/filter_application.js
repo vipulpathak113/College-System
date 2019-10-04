@@ -2,7 +2,7 @@ import React from 'react'
 import { TextField } from 'react-md'
 import FlatButton from '../components/Buttons/flat_button'
 import style from './style'
-import easygov from './network'
+import network from './network'
 import store from './store'
 import bootupsettings from '../models/bootupsettings'
 import get_service_details from './get_service_details'
@@ -27,10 +27,10 @@ function clearSearchResults(status) {
 	document.getElementById('searchbar').value = ""
 	document.getElementById('new-search-bar-filter').value = "search-select-any-one"
 	if(status === ""){
-		// easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": "", "searchType": "", "status": status, "size":15, "pageNumber": currentPage }, "SEARCH_ALL_APPLICATIONS", function (response, component) { })
-		easygov.send(bootupsettings.ENDPOINTS.ALL_APPLICATIONS, { "pageNumber": currentPage, "size": 15 }, "SEARCH_ALL_APPLICATIONS", function (response, component) { })
+		// network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": "", "searchType": "", "status": status, "size":15, "pageNumber": currentPage }, "SEARCH_ALL_APPLICATIONS", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.ALL_APPLICATIONS, { "pageNumber": currentPage, "size": 15 }, "SEARCH_ALL_APPLICATIONS", function (response, component) { })
 	}else {
-		easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": "", "searchType": "", "status": status, "size":15, "pageNumber": currentPage, "size": 15 }, status, function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": "", "searchType": "", "status": status, "size":15, "pageNumber": currentPage, "size": 15 }, status, function (response, component) { })
 	}
 }
 function searchApplications(pageStatus) {
@@ -42,9 +42,9 @@ function searchApplications(pageStatus) {
 	if (searchKey !== "search-select-any-one" && searchPhrase !== "") {
 		storage.setItemValue(keys.USER_PREFERENCE.SEARCH_QUERY, JSON.stringify({"type": searchKey, "value": searchPhrase}))
 		if(pageStatus === ""){
-			easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "status": currentStatus, "searchTerm": searchPhrase, "searchType": searchKey, "pageNumber":previousPage, "size": 15 }, "SEARCH_ALL_APPLICATIONS", function (response, component) { })
+			network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "status": currentStatus, "searchTerm": searchPhrase, "searchType": searchKey, "pageNumber":previousPage, "size": 15 }, "SEARCH_ALL_APPLICATIONS", function (response, component) { })
 		}else {
-			easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "status": currentStatus, "searchTerm": searchPhrase, "searchType": searchKey, "pageNumber":previousPage, "size": 15 }, currentStatus, function (response, component) { })
+			network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "status": currentStatus, "searchTerm": searchPhrase, "searchType": searchKey, "pageNumber":previousPage, "size": 15 }, currentStatus, function (response, component) { })
 		}
 	}
 	else if (searchPhrase === "" && searchKey !== "") {

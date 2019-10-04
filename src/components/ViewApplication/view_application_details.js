@@ -5,7 +5,7 @@ import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import gallery from '../../img/gallery.svg'
 import IconButton from '../Buttons/icon_button'
 
@@ -44,7 +44,7 @@ export default class BeneficiaryDetails extends React.Component {
 	};
 
 	componentWillMount() {
-		easygov.send(bootupsettings.ENDPOINTS.GET_SINGLE_APPLICATION, { "applicationId": applicationData.id, "sgmId": applicationData.sgmId }, "GET_SINGLE_APPLICATION", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.GET_SINGLE_APPLICATION, { "applicationId": applicationData.id, "sgmId": applicationData.sgmId }, "GET_SINGLE_APPLICATION", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "GET_SINGLE_APPLICATION") {
@@ -63,7 +63,7 @@ export default class BeneficiaryDetails extends React.Component {
 	}
 
 	changeApplicationStatus(id) {
-		easygov.send(bootupsettings.ENDPOINTS.CHANGE_APPLICATION_STATUS, { "applicationId": applicationData.id }, "CHANGE_APPLICATION_STATUS", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.CHANGE_APPLICATION_STATUS, { "applicationId": applicationData.id }, "CHANGE_APPLICATION_STATUS", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "CHANGE_APPLICATION_STATUS") {
@@ -80,7 +80,7 @@ export default class BeneficiaryDetails extends React.Component {
 	}
 
 	printCommand(){
-		easygov.send(bootupsettings.ENDPOINTS.PRINT_APPLICATION, { "applicationId": parseInt(applicationData.id), "sgmId": parseInt(applicationData.sgmId) }, "PRINT_APPLICATION", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.PRINT_APPLICATION, { "applicationId": parseInt(applicationData.id), "sgmId": parseInt(applicationData.sgmId) }, "PRINT_APPLICATION", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "PRINT_APPLICATION") {
@@ -113,7 +113,7 @@ export default class BeneficiaryDetails extends React.Component {
 	getDocument = (event) => {
 		docInfo = this.state.applicationDocs.find((item) => (item.fieldDisplayName.trim() === event.target.value))
 		documentSelected = true
-		easygov.send(bootupsettings.ENDPOINTS.GET_SINGLE_DOCUMENT, { "usDocId": parseInt(docInfo.id) }, "GET_SINGLE_DOCUMENT", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.GET_SINGLE_DOCUMENT, { "usDocId": parseInt(docInfo.id) }, "GET_SINGLE_DOCUMENT", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "GET_SINGLE_DOCUMENT") {

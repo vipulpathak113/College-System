@@ -2,7 +2,7 @@ import React from "react";
 import keys from "../../models/localStorage-keys";
 import storage from "../../utility/encrypt_data";
 import store from "../../utility/store";
-import easygov from "../../utility/network";
+import network from "../../utility/network";
 import bootupsettings from "../../models/bootupsettings";
 import FlatButton from "../Buttons/flat_button";
 import { Button } from "react-md";
@@ -25,7 +25,7 @@ export default class StudentInfo extends React.Component {
   }
 
   componentDidMount() {
-    easygov.send(
+    network.send(
       bootupsettings.ENDPOINTS.STUDENT_INFO,
       {},
       "GET_STUDENT_INFO",

@@ -2,7 +2,7 @@ import React from 'react'
 import store from '../../utility/store'
 import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import bootupsettings from '../../models/bootupsettings'
 import allApplicationsPagination from '../../utility/all_applications_pagination'
 import { CSVLink } from 'react-csv'
@@ -21,7 +21,7 @@ export default class ApprovedVerifyDocuments extends React.Component {
 		if (storage.getItemValue(keys.USER_PREFERENCE.PREVIOUS_PAGE)) {
 			previousPage = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.PREVIOUS_PAGE))
 		}
-		easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": "", "searchType": "", "status": "all_documents_accepted", "size": 15, "pageNumber": previousPage }, "ALL_ACCEPTED_DOCUMENTS", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": "", "searchType": "", "status": "all_documents_accepted", "size": 15, "pageNumber": previousPage }, "ALL_ACCEPTED_DOCUMENTS", function (response, component) { })
 
 		store.subscribe(() => {
 			var response = store.getState()

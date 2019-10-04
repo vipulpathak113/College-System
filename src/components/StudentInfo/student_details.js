@@ -5,7 +5,7 @@ import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import $ from 'jquery'
 import FlatButton from '../Buttons/flat_button'
 
@@ -23,7 +23,7 @@ export default class StudentDetails extends React.Component {
 
 
     goBack() {
-		easygov.send(bootupsettings.ENDPOINTS.STUDENT_INFO,{},"GET_STUDENT_INFO", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.STUDENT_INFO,{},"GET_STUDENT_INFO", function (response, component) { })
 		store.subscribe(() => {
             var response = store.getState()
 			if (response.type === "GET_STUDENT_INFO") {
@@ -76,7 +76,7 @@ export default class StudentDetails extends React.Component {
 		$("input").prop('disabled', true);
 		$("input").removeClass("md-text--enabled");
 
-		easygov.sendPatch(bootupsettings.ENDPOINTS.EDIT_STUDENT_INFO,detail,"EDIT_STUDENT_INFO", function (response, component) { })
+		network.sendPatch(bootupsettings.ENDPOINTS.EDIT_STUDENT_INFO,detail,"EDIT_STUDENT_INFO", function (response, component) { })
 
 
 	}
@@ -92,7 +92,7 @@ export default class StudentDetails extends React.Component {
 	}
 
 	componentDidMount(){
-        easygov.sendGet(bootupsettings.ENDPOINTS.STUDENT_PROFILE,this.props.data.id,"GET_STUDENT_PROFILE", function (response, component) { })
+        network.sendGet(bootupsettings.ENDPOINTS.STUDENT_PROFILE,this.props.data.id,"GET_STUDENT_PROFILE", function (response, component) { })
         store.subscribe(() => {
             var response = store.getState()
 			if (response.type === "GET_STUDENT_PROFILE") {

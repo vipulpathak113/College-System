@@ -3,7 +3,7 @@ import storage from './encrypt_data'
 import keys from '../models/localStorage-keys'
 import url_utility from './url'
 import website_urls from './website_urls'
-import easygov from './network'
+import network from './network'
 import store from './store'
 import bootupsettings from '../models/bootupsettings'
 import get_service_details from './get_service_details'
@@ -12,7 +12,7 @@ import urlKeys from '../config/urlKeys'
 
 const generate_survey_id_api = (users_choice, callback) => {
   console.log("in genere");
-  easygov.send(bootupsettings.ENDPOINTS.GENERATE_SURVEY_ID, length, "GENERATE_SURVEY_ID", function (response, component) {})
+  network.send(bootupsettings.ENDPOINTS.GENERATE_SURVEY_ID, length, "GENERATE_SURVEY_ID", function (response, component) {})
 
   store.subscribe(() => {
     let aadhaar = JSON.parse(storage.getItemValue(keys.APP_PREFERENCE.GET_SETTINGS)).is_aadhaar_enabled
@@ -83,7 +83,7 @@ export default generate_survey_id_api;
 
 
 
-// It is commented because Aadhaar is not applicable for easygov website.
+// It is commented because Aadhaar is not applicable for network website.
 // else {
 // 	url = "/" + storage.getItemValue(keys.USER_PREFERENCE.CURRENT_DISTRICT) +
 // 					urlKeys.user_story + urlKeys.apply_for + users_choice +

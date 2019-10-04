@@ -2,7 +2,7 @@ import React from 'react'
 import { TextField } from 'react-md'
 import FlatButton from '../components/Buttons/flat_button'
 import style from './style'
-import easygov from './network'
+import network from './network'
 import store from './store'
 import bootupsettings from '../models/bootupsettings'
 import get_service_details from './get_service_details'
@@ -37,9 +37,9 @@ function openPage(val) {
 	currentPage = val
 	storage.setItemValue(keys.USER_PREFERENCE.PREVIOUS_PAGE, val)
 	if(pageStatus !== ""){
-		easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": searchTerm, "searchType": searchType, "status": pageStatus, "size": 15, pageNumber: val }, tabValue, function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": searchTerm, "searchType": searchType, "status": pageStatus, "size": 15, pageNumber: val }, tabValue, function (response, component) { })
 	}else {
-		easygov.send(bootupsettings.ENDPOINTS.ALL_APPLICATIONS, {"pageNumber":val, "size": 15}, "ALL_APPLICATIONS", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.ALL_APPLICATIONS, {"pageNumber":val, "size": 15}, "ALL_APPLICATIONS", function (response, component) { })
 	}
 }
 

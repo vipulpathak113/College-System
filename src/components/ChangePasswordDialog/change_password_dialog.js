@@ -1,7 +1,7 @@
 import React from 'react'
 import {TextField } from 'react-md/lib';
 import { FlatButton } from 'react-md/lib/Buttons';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import bootupsettings from '../../models/bootupsettings'
 import store from '../../utility/store'
 import storage from '../../utility/encrypt_data'
@@ -50,7 +50,7 @@ export default class ChangePassword extends React.Component {
                             new_password: this.state.newPassword,
                             confirmPassword: this.state.confirmPassword
                         }
-                        easygov.sendpost(bootupsettings.ENDPOINTS.CHANGE_PASSWORD, change_password, "CHANGE_PASSWORD", function (response, component) { })
+                        network.sendpost(bootupsettings.ENDPOINTS.CHANGE_PASSWORD, change_password, "CHANGE_PASSWORD", function (response, component) { })
                     }
                     else{
                         this.setState({

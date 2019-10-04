@@ -5,7 +5,7 @@ import keys from "../../models/localStorage-keys";
 import storage from "../../utility/encrypt_data";
 import store from "../../utility/store";
 import bootupsettings from "../../models/bootupsettings";
-import easygov from "../../utility/network";
+import network from "../../utility/network";
 import $ from "jquery";
 import FlatButton from "../Buttons/flat_button";
 import TextareaAutosize from "react-textarea-autosize";
@@ -23,7 +23,7 @@ export default class JobDetails extends React.Component {
   }
 
   goBack() {
-    easygov.send(bootupsettings.ENDPOINTS.ALL_JOBS, {}, "ALL_JOBS", function(
+    network.send(bootupsettings.ENDPOINTS.ALL_JOBS, {}, "ALL_JOBS", function(
       response,
       component
     ) {});
@@ -101,7 +101,7 @@ export default class JobDetails extends React.Component {
     $("textarea").prop("disabled", true);
     $("textarea").removeClass("md-text--enabled");
 
-    easygov.sendPatch(
+    network.sendPatch(
       bootupsettings.ENDPOINTS.EDIT_JOB,
       detail,
       "EDIT_JOB",

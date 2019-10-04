@@ -4,7 +4,7 @@ import { Button } from 'react-md'
 import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import bootupsettings from '../../models/bootupsettings'
 import allApplicationsPagination from '../../utility/all_applications_pagination'
 import { CSVLink } from 'react-csv'
@@ -51,7 +51,7 @@ export default class NewVerifyDocuments extends React.Component {
 			searchObj.searchTerm = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).value
 			searchObj.searchType = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).type
 		}
-		easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, searchObj, "form_filled_up", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, searchObj, "form_filled_up", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "form_filled_up") {
@@ -62,7 +62,7 @@ export default class NewVerifyDocuments extends React.Component {
 					this.setState({ applicationsData: data })
 					if (storage.getItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT)) {
 						if (response.data.totalCount !== storage.getItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT)) {
-							easygov.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
+							network.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
 						}
 					}
 					else {

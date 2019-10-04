@@ -3,7 +3,7 @@ import Chart from './chart';
 import Navbar from './navbar_harlabh'
 import bootupsettings from '../../models/bootupsettings'
 import reports from '../../models/harlabh-reports'
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import store from '../../utility/store'
 import storage from '../../utility/encrypt_data'
 import { LinearProgress, Button, SelectField } from 'react-md/lib'
@@ -23,7 +23,7 @@ export default class Reports extends React.Component {
     }
 
     componentWillMount() {
-        easygov.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, reports, "HARLABH_DASHBOARD", function (response, component) {})
+        network.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, reports, "HARLABH_DASHBOARD", function (response, component) {})
         store.subscribe(() => {
             response = store.getState()
             if (response.type === "HARLABH_DASHBOARD" && response) {
@@ -59,7 +59,7 @@ export default class Reports extends React.Component {
 
         })
 
-        easygov.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {})
+        network.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {})
         store.subscribe(() => {
             response = store.getState()
             if (response.type === "HARLABH_FILTER_SERVICES" && response) {
@@ -84,7 +84,7 @@ export default class Reports extends React.Component {
             }
         })
 
-        easygov.send(bootupsettings.ENDPOINTS.HARLABH_DISTRICT_WISE_DATA_COUNT, {}, "HARLABH_DISTRICT_WISE_DATA_COUNT", function (response, component) {})
+        network.send(bootupsettings.ENDPOINTS.HARLABH_DISTRICT_WISE_DATA_COUNT, {}, "HARLABH_DISTRICT_WISE_DATA_COUNT", function (response, component) {})
         store.subscribe(() => {
             response = store.getState()
             if (response.type === "HARLABH_DISTRICT_WISE_DATA_COUNT" && response) {
@@ -115,7 +115,7 @@ export default class Reports extends React.Component {
             }
         })
 
-        easygov.send(bootupsettings.ENDPOINTS.HARLABH_COMPARE_ONBOARDING_STATUS, { size: 1000 }, "HARLABH_COMPARE_ONBOARDING_STATUS", function (response, component) {})
+        network.send(bootupsettings.ENDPOINTS.HARLABH_COMPARE_ONBOARDING_STATUS, { size: 1000 }, "HARLABH_COMPARE_ONBOARDING_STATUS", function (response, component) {})
         store.subscribe(() => {
             var localboarded = 0, localfeedback = 0, localfullyAutomated = 0, localinteroperableApis = 0, localmanuallyRunning = 0
             response = store.getState()
@@ -176,18 +176,18 @@ export default class Reports extends React.Component {
       districtName = val
         if (val === "All Districts") {
             districtId = "";
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { districtId: districtId, departmentId: departmentId, serviceId: serviceId, from_date: "06-12-2017", size : 100000}, "HARLABH_DASHBOARD", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { districtId: districtId, departmentId: departmentId, serviceId: serviceId, from_date: "06-12-2017", size : 100000}, "HARLABH_DASHBOARD", function (response, component) {
             })
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { districtId: districtId, size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { districtId: districtId, size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {
             })
         }
         else {
             var districtsData = districtWiseData.find((item) => (item.geography == val))
             districtId = districtsData.districtId
             // store.dispatch({data :{districtId : districtId} })
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { districtId: districtId, departmentId: departmentId, serviceId: serviceId, from_date: "06-12-2017", size : 100000 }, "HARLABH_DASHBOARD", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { districtId: districtId, departmentId: departmentId, serviceId: serviceId, from_date: "06-12-2017", size : 100000 }, "HARLABH_DASHBOARD", function (response, component) {
             })
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { districtId: districtId, size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { districtId: districtId, size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {
             })
 
         }
@@ -197,9 +197,9 @@ export default class Reports extends React.Component {
       departmentName = val
         if (val === "All Departments") {
             departmentId = ""
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { serviceId: serviceId, districtId: districtId, departmentId: departmentId, from_date: "06-12-2017", size : 100000}, "HARLABH_DASHBOARD", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { serviceId: serviceId, districtId: districtId, departmentId: departmentId, from_date: "06-12-2017", size : 100000}, "HARLABH_DASHBOARD", function (response, component) {
             })
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { departmentId: departmentId, districtId: districtId, serviceId: serviceId, size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { departmentId: departmentId, districtId: districtId, serviceId: serviceId, size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {
             })
         }
 
@@ -207,9 +207,9 @@ export default class Reports extends React.Component {
             var departmentData = departmentWiseData.find((item) => (item.name == val))
             departmentId = departmentData.id
             // store.dispatch({data :{districtId : districtId, departmentId : departmentId} })
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { departmentId: departmentId, districtId: districtId, size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_FILTER_SERVICES, { departmentId: departmentId, districtId: districtId, size: 1000 }, "HARLABH_FILTER_SERVICES", function (response, component) {
             })
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { departmentId: departmentId, serviceId: serviceId, districtId: districtId, from_date: "06-12-2017", size : 100000 }, "HARLABH_DASHBOARD", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { departmentId: departmentId, serviceId: serviceId, districtId: districtId, from_date: "06-12-2017", size : 100000 }, "HARLABH_DASHBOARD", function (response, component) {
             })
         }
         store.dispatch({ type: "reportsResponse", data: { districtId: districtId, departmentId: departmentId } })
@@ -218,7 +218,7 @@ export default class Reports extends React.Component {
       schemeName = val
         if (val === "All Schemes") {
             serviceId = ""
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { serviceId: serviceId, districtId: districtId, departmentId: departmentId, from_date: "06-12-2017", size : 100000 }, "HARLABH_DASHBOARD", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { serviceId: serviceId, districtId: districtId, departmentId: departmentId, from_date: "06-12-2017", size : 100000 }, "HARLABH_DASHBOARD", function (response, component) {
             })
         }
 
@@ -226,7 +226,7 @@ export default class Reports extends React.Component {
             var serviceData = serviceWiseData.find((item) => (item.serviceName == val))
             serviceId = serviceData.serviceId
             // store.dispatch({data :{districtId : districtId, departmentId : departmentId, serviceId : serviceId} })
-            easygov.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { departmentId: departmentId, serviceId: serviceId, districtId: districtId, from_date: "06-12-2017", size : 100000 }, "HARLABH_DASHBOARD", function (response, component) {
+            network.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, { departmentId: departmentId, serviceId: serviceId, districtId: districtId, from_date: "06-12-2017", size : 100000 }, "HARLABH_DASHBOARD", function (response, component) {
             })
         }
         store.dispatch({ type: "reportsResponse", data: { districtId: districtId, departmentId: departmentId, serviceId: serviceId } })
@@ -277,7 +277,7 @@ export default class Reports extends React.Component {
                 serviceId: serviceId
             }
         }
-        easygov.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, formData, "HARLABH_DASHBOARD", function (response, component) {
+        network.send(bootupsettings.ENDPOINTS.HARLABH_DASHBOARD, formData, "HARLABH_DASHBOARD", function (response, component) {
         })
     }
 

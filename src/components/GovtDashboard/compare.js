@@ -5,7 +5,7 @@ import { colSchema, colMeta } from './deptt_list'
 import { Switch } from 'react-md';
 import * as _ from 'lodash';
 import bootupsettings from '../../models/bootupsettings'
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import store from '../../utility/store'
 import { Accordion, AccordionItem } from 'react-sanfona';
 
@@ -136,10 +136,10 @@ export default class Compare extends React.Component {
     }
     componentWillMount() {
 
-        easygov.send(bootupsettings.ENDPOINTS.HARLABH_DISTRICT_WISE_DATA_COUNT, "", "HARLABH_DISTRICT_WISE_DATA_COUNT", function (response, component) {
+        network.send(bootupsettings.ENDPOINTS.HARLABH_DISTRICT_WISE_DATA_COUNT, "", "HARLABH_DISTRICT_WISE_DATA_COUNT", function (response, component) {
         })
 
-        easygov.send(bootupsettings.ENDPOINTS.HARLABH_COMPARE_ONBOARDING_STATUS, "", "HARLABH_COMPARE_ONBOARDING_STATUS", function (response, component) {
+        network.send(bootupsettings.ENDPOINTS.HARLABH_COMPARE_ONBOARDING_STATUS, "", "HARLABH_COMPARE_ONBOARDING_STATUS", function (response, component) {
         })
         store.subscribe(() => {
             response = store.getState()

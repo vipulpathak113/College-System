@@ -3,7 +3,7 @@ import FlatButton from '../Buttons/flat_button'
 import { Snackbar } from 'react-md'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import allApplicationsPagination from '../../utility/all_applications_pagination'
 import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
@@ -86,7 +86,7 @@ export default class OnHoldTab extends React.Component {
     			term = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).value
     			type = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).type
     		}
-        easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": term, "searchType": type, "status": "on_hold", pageNumber: previousPage, "size": 15 }, "on_hold", function (response, component) { })
+        network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": term, "searchType": type, "status": "on_hold", pageNumber: previousPage, "size": 15 }, "on_hold", function (response, component) { })
     }
 
     componentWillMount() {
@@ -104,7 +104,7 @@ export default class OnHoldTab extends React.Component {
                     if (storage.getItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT)) {
                         if (response.data.totalCount !== storage.getItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT)) {
                             storage.setItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT, response.data.totalCount)
-                            easygov.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
+                            network.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
                         }
                     }
                     else {
@@ -135,7 +135,7 @@ export default class OnHoldTab extends React.Component {
     handleApproveAction(val) {
         let idArray = []
         idArray.push(val.id)
-        easygov.send(bootupsettings.ENDPOINTS.ACTIVE_BENEFICIARY, { "applicationId": idArray }, "ACTIVE_BENEFICIARY", function (response, component) { })
+        network.send(bootupsettings.ENDPOINTS.ACTIVE_BENEFICIARY, { "applicationId": idArray }, "ACTIVE_BENEFICIARY", function (response, component) { })
         store.subscribe(() => {
             var response = store.getState()
             if (response.type === "ACTIVE_BENEFICIARY") {

@@ -12,7 +12,7 @@ import ImportData from '../ImportData/import'
 import StudentInfo from '../StudentInfo/studentinfo'
 import bootupsettings from '../../models/bootupsettings';
 import Jobs from '../Jobs/jobs'
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import ChangePasswordDialog from '../ChangePasswordDialog/change_password_dialog'
 
 export default class Home extends Component {
@@ -140,7 +140,7 @@ export default class Home extends Component {
 	}
 
 	logoutUser() {
-		easygov.send(bootupsettings.ENDPOINTS.LOGOUT_USER, "", "LOGOUT_USER", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.LOGOUT_USER, "", "LOGOUT_USER", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "LOGOUT_USER") {

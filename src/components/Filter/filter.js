@@ -5,7 +5,7 @@ import keys from "../../models/localStorage-keys";
 import storage from "../../utility/encrypt_data";
 import store from "../../utility/store";
 import bootupsettings from "../../models/bootupsettings";
-import easygov from "../../utility/network";
+import network from "../../utility/network";
 import $ from "jquery";
 import FlatButton from "../Buttons/flat_button";
 
@@ -21,7 +21,7 @@ export default class StudentFilter extends React.Component {
 
   filterSelection(e) {
     this.setState({ [e.target.name]: e.target.value }, () =>
-      easygov.send(
+      network.send(
         bootupsettings.ENDPOINTS.STUDENT_FILTER,
         {
           year: this.state.year,
@@ -40,7 +40,7 @@ export default class StudentFilter extends React.Component {
       department: "",
       course: ""
     });
-    easygov.send(
+    network.send(
       bootupsettings.ENDPOINTS.STUDENT_INFO,
       {},
       "GET_STUDENT_INFO",

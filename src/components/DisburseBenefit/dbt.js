@@ -3,7 +3,7 @@ import { Snackbar } from 'react-md'
 import FlatButton from '../Buttons/flat_button'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import { CSVLink } from 'react-csv'
@@ -105,7 +105,7 @@ export default class DBT extends React.Component {
                   getCount : true
                 })
               }
-                easygov.send(bootupsettings.ENDPOINTS.DISBURSE_DBT_AMOUNT, { "applicationId": parseInt(applicationDetails.id), "amount": parseFloat(amountToDisburse) }, "DISBURSE_DBT_AMOUNT", function (response, component) { })
+                network.send(bootupsettings.ENDPOINTS.DISBURSE_DBT_AMOUNT, { "applicationId": parseInt(applicationDetails.id), "amount": parseFloat(amountToDisburse) }, "DISBURSE_DBT_AMOUNT", function (response, component) { })
 
             }
         }
@@ -124,7 +124,7 @@ export default class DBT extends React.Component {
         size : 15,
         pageNumber : currentPage
       }
-        easygov.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, searchObj, "GET_DBT_APPLICATIONS")
+        network.send(bootupsettings.ENDPOINTS.GET_DBT_APPLICATIONS, searchObj, "GET_DBT_APPLICATIONS")
     }
 
     setCurrentPage(val) {
@@ -194,7 +194,7 @@ export default class DBT extends React.Component {
                 if (response.code === 200) {
                   // debugger;
                   activeAction = ""
-                  easygov.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
+                  network.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
                   // storage.setItemValue(keys.APP_PREFERENCE.CURRENT_APPLICATION_STATUS, JSON.stringify({ id: applicationDetails.id, status: applicationDetails.status }))
                   this.getDbtApplications()
                 }

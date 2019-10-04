@@ -53,7 +53,7 @@ const services_autocomplete = (id, placeholder, inputStyle, rootStyle, listStyle
 			}
 		}
 		else {
-			// window.location.href = "https://www.easygov.co.in/services/passport/?next=/apply/passport"
+			// window.location.href = "https://www.network.co.in/services/passport/?next=/apply/passport"
 		}
 	}
 

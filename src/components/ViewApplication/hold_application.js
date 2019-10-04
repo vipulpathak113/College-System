@@ -3,7 +3,7 @@ import TablePopulator from './table_populator'
 import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import bootupsettings from '../../models/bootupsettings'
 
 var activeAction = "", data = [], pages = 0, previousPage = 1, totalCount = 0
@@ -30,7 +30,7 @@ export default class HoldApplication extends React.Component {
 			term = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).value
 			type = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).type
 		}
-		easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": term, "searchType": type, "status": "on_hold", "size":15, "pageNumber":previousPage }, "on_hold", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": term, "searchType": type, "status": "on_hold", "size":15, "pageNumber":previousPage }, "on_hold", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "on_hold" || response.type === "on_hold_tab") {

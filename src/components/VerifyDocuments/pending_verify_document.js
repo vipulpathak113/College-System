@@ -4,7 +4,7 @@ import FlatButton from '../Buttons/flat_button'
 import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import bootupsettings from '../../models/bootupsettings'
 import allApplicationsPagination from '../../utility/all_applications_pagination'
 import { CSVLink } from 'react-csv'
@@ -34,7 +34,7 @@ export default class PendingVerifyDocuments extends React.Component {
     			term = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).value
     			type = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).type
     		}
-        easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": term, "searchType": type, "status": "documents_pending", "size": 15, "pageNumber": previousPage }, "documents_pending", function (response, component) { })
+        network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": term, "searchType": type, "status": "documents_pending", "size": 15, "pageNumber": previousPage }, "documents_pending", function (response, component) { })
         store.subscribe(() => {
             var response = store.getState()
             if (response.type === "documents_pending") {
@@ -46,7 +46,7 @@ export default class PendingVerifyDocuments extends React.Component {
                     if (storage.getItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT)) {
                         if (response.data.totalCount !== storage.getItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT)) {
                             storage.setItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT, response.data.totalCount)
-                            easygov.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
+                            network.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
                         }
                     }
                     else {

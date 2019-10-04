@@ -5,7 +5,7 @@ import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import { CSVLink } from 'react-csv';
 import allApplicationsPagination from '../../utility/all_applications_pagination'
 
@@ -69,7 +69,7 @@ export default class NewTab extends React.Component {
     			term = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).value
     			type = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.SEARCH_QUERY)).type
     		}
-        easygov.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": term, "searchType": type, "status": "all_documents_accepted", "size": 15, pageNumber: previousPage }, "all_documents_accepted", function (response, component) { })
+        network.send(bootupsettings.ENDPOINTS.SEARCH_APPLICATIONS, { "searchTerm": term, "searchType": type, "status": "all_documents_accepted", "size": 15, pageNumber: previousPage }, "all_documents_accepted", function (response, component) { })
     }
 
     componentWillMount() {
@@ -87,7 +87,7 @@ export default class NewTab extends React.Component {
                     if (storage.getItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT)) {
                         if (response.data.totalCount !== storage.getItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT)) {
                             storage.setItemValue(keys.APP_PREFERENCE.PREVIOUS_COUNT, response.data.totalCount)
-                            easygov.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
+                            network.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
                         }
                     }
                     else {
@@ -184,7 +184,7 @@ export default class NewTab extends React.Component {
     holdApplication() {
         let message = document.getElementById('holdReason').value
         if (message !== "") {
-            easygov.send(bootupsettings.ENDPOINTS.HOLD_BENEFICIARY, { "applicationId": parseInt(this.state.selectedApplicationData.id), "messageData": message }, "HOLD_BENEFICIARY", function (response, component) { })
+            network.send(bootupsettings.ENDPOINTS.HOLD_BENEFICIARY, { "applicationId": parseInt(this.state.selectedApplicationData.id), "messageData": message }, "HOLD_BENEFICIARY", function (response, component) { })
             store.subscribe(() => {
                 let response = store.getState()
                 if (response.type === "HOLD_BENEFICIARY") {
@@ -209,7 +209,7 @@ export default class NewTab extends React.Component {
     handleApproveAction() {
         let idArray = []
         idArray.push(parseInt(this.state.selectedApplicationData.id))
-        easygov.send(bootupsettings.ENDPOINTS.ACTIVE_BENEFICIARY, { "applicationId": idArray }, "ACTIVE_BENEFICIARY", function (response, component) { })
+        network.send(bootupsettings.ENDPOINTS.ACTIVE_BENEFICIARY, { "applicationId": idArray }, "ACTIVE_BENEFICIARY", function (response, component) { })
         store.subscribe(() => {
             let response = store.getState()
             if (response.type === "ACTIVE_BENEFICIARY") {
@@ -226,7 +226,7 @@ export default class NewTab extends React.Component {
     }
 
     approveAll() {
-        easygov.send(bootupsettings.ENDPOINTS.ACTIVE_BENEFICIARY, { "applicationId": selectedCheckboxesIdArray }, "ACTIVE_BENEFICIARY", function (response, component) { })
+        network.send(bootupsettings.ENDPOINTS.ACTIVE_BENEFICIARY, { "applicationId": selectedCheckboxesIdArray }, "ACTIVE_BENEFICIARY", function (response, component) { })
         store.subscribe(() => {
             let response = store.getState()
             if (response.type === "ACTIVE_BENEFICIARY") {

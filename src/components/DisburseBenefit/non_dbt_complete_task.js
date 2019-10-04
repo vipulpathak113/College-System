@@ -7,7 +7,7 @@ import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 
 var fileObject, nonMonetaryObj = new FormData()
 export default class NonDBTCompleteTask extends React.Component {
@@ -64,12 +64,12 @@ export default class NonDBTCompleteTask extends React.Component {
 		nonMonetaryObj.append("benefit_id", this.state.benefitData.id)
 		nonMonetaryObj.append("message", document.getElementById('feedbackMessage').value)
 		if(document.getElementById('proof-image').value !== ""){
-			easygov.send_file(bootupsettings.ENDPOINTS.COMPLETE_NON_MONETARY_BENEFIT, nonMonetaryObj, "COMPLETE_NON_MONETARY_BENEFIT", function (response, component) { })
+			network.send_file(bootupsettings.ENDPOINTS.COMPLETE_NON_MONETARY_BENEFIT, nonMonetaryObj, "COMPLETE_NON_MONETARY_BENEFIT", function (response, component) { })
 			store.subscribe(() => {
 				var response = store.getState()
 				if (response.type === "COMPLETE_NON_MONETARY_BENEFIT") {
 					if(response.code === 200){
-						easygov.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
+						network.send(bootupsettings.ENDPOINTS.APPLICATION_COUNT, "", "NEW_APPLICATIONS_COUNT", function (response, component) { })
 						this.goBack()
 					}
 					else if (response.code === 401 && response.message.toLowerCase().includes("token")) {

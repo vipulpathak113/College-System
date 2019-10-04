@@ -6,7 +6,7 @@ import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import { CSVLink } from 'react-csv'
 
 var activeAction = "", is_po = false, selectedApplicationData, selectedBenefit, selectedUser, allApplicationsData = []
@@ -63,7 +63,7 @@ export default class NonMonetary extends React.Component {
 	}
 
 	handleAssignTo() {
-		easygov.send(bootupsettings.ENDPOINTS.ASSIGN_BENEFIT, { "user_id": JSON.parse(selectedUser).user_id, "benefit_id": selectedBenefit.id }, "ASSIGN_BENEFIT", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.ASSIGN_BENEFIT, { "user_id": JSON.parse(selectedUser).user_id, "benefit_id": selectedBenefit.id }, "ASSIGN_BENEFIT", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "ASSIGN_BENEFIT") {
@@ -71,7 +71,7 @@ export default class NonMonetary extends React.Component {
 					activeAction = null
 					pageStatus = "active_beneficiary"
 					this.searchApplication()
-					// easygov.send(bootupsettings.ENDPOINTS.NON_MONETARY_APPLICATIONS, { "size": 2000 }, "NON_MONETARY_APPLICATIONS", function (response, component) { })
+					// network.send(bootupsettings.ENDPOINTS.NON_MONETARY_APPLICATIONS, { "size": 2000 }, "NON_MONETARY_APPLICATIONS", function (response, component) { })
 				}
 				else if (response.code === 401 && response.message.toLowerCase().includes("token")) {
 					storage.setItemValue(keys.APP_PREFERENCE.IS_TOKEN_EXPIRED, "TRUE")
@@ -98,12 +98,12 @@ export default class NonMonetary extends React.Component {
 		else {
 			previousPage = 1
 		}
-		easygov.send(bootupsettings.ENDPOINTS.SEARCH_NON_MONETARY_APPLICATIONS, { "searchTerm": "", "searchType": "", "status": pageStatus, "pageNumber": currentPage }, "SEARCH_NON_MONETARY_APPLICATIONS", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.SEARCH_NON_MONETARY_APPLICATIONS, { "searchTerm": "", "searchType": "", "status": pageStatus, "pageNumber": currentPage }, "SEARCH_NON_MONETARY_APPLICATIONS", function (response, component) { })
 	}
 
 	componentWillMount() {
 		this.searchApplication()
-		// easygov.send(bootupsettings.ENDPOINTS.NON_MONETARY_APPLICATIONS, { "size": 2000 }, "NON_MONETARY_APPLICATIONS", function (response, component) { })
+		// network.send(bootupsettings.ENDPOINTS.NON_MONETARY_APPLICATIONS, { "size": 2000 }, "NON_MONETARY_APPLICATIONS", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "SEARCH_NON_MONETARY_APPLICATIONS") {
@@ -113,7 +113,7 @@ export default class NonMonetary extends React.Component {
 					allApplicationsData = response.data.applications.objects
 					this.setState({ nonMonetaryApplications: response.data.applications.objects })
 					if (response.data.is_po === true && response.data.applications.objects.length > 0 && pageStatus === "active_beneficiary") {
-						easygov.send(bootupsettings.ENDPOINTS.GET_FACILITATOR_USER, "", "GET_FACILITATOR_USER", function (response, component) { })
+						network.send(bootupsettings.ENDPOINTS.GET_FACILITATOR_USER, "", "GET_FACILITATOR_USER", function (response, component) { })
 					}
 				}
 				else if (response.code === 401 && response.message.toLowerCase().includes("token")) {

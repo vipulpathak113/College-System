@@ -4,7 +4,7 @@ import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import style from '../../utility/style'
 import IconButton from '../Buttons/icon_button'
 import KycDetails from './kyc_details'
@@ -42,7 +42,7 @@ export default class ViewDocument extends React.Component {
 			val === 2 ? this.setState({ classProperty: 2 }) : null
 	}
 	takeReviewAction(val) {
-		easygov.send(bootupsettings.ENDPOINTS.REVIEW_DOCUMENT_ACTION, { "usDocsId": docData.id }, "REVIEW_DOCUMENT_ACTION", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.REVIEW_DOCUMENT_ACTION, { "usDocsId": docData.id }, "REVIEW_DOCUMENT_ACTION", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "REVIEW_DOCUMENT_ACTION") {
@@ -89,7 +89,7 @@ export default class ViewDocument extends React.Component {
 			this.setState({
 				view: false
 			})
-			easygov.send(bootupsettings.ENDPOINTS.TAKE_DOCUMENT_ACTION, actionModel, "TAKE_DOCUMENT_ACTION", function (response, component) { })
+			network.send(bootupsettings.ENDPOINTS.TAKE_DOCUMENT_ACTION, actionModel, "TAKE_DOCUMENT_ACTION", function (response, component) { })
 			store.subscribe(() => {
 				var response = store.getState()
 				if (response.type === "TAKE_DOCUMENT_ACTION") {
@@ -138,7 +138,7 @@ export default class ViewDocument extends React.Component {
 			this.setState({
 				view: false
 			})
-			easygov.send(bootupsettings.ENDPOINTS.TAKE_DOCUMENT_SUGGESSTION_ACTION, actionModel, "TAKE_DOCUMENT_SUGGESSTION_ACTION", function (response, component) { })
+			network.send(bootupsettings.ENDPOINTS.TAKE_DOCUMENT_SUGGESSTION_ACTION, actionModel, "TAKE_DOCUMENT_SUGGESSTION_ACTION", function (response, component) { })
 			store.subscribe(() => {
 				var response = store.getState()
 				if (response.type === "TAKE_DOCUMENT_SUGGESSTION_ACTION") {
@@ -176,7 +176,7 @@ export default class ViewDocument extends React.Component {
 	}
 
 	getDocument(){
-		easygov.send(bootupsettings.ENDPOINTS.GET_SINGLE_DOCUMENT, { "usDocId": docData.id }, "GET_SINGLE_DOCUMENT", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.GET_SINGLE_DOCUMENT, { "usDocId": docData.id }, "GET_SINGLE_DOCUMENT", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "GET_SINGLE_DOCUMENT") {

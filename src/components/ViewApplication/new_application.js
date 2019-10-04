@@ -3,7 +3,7 @@ import TablePopulator from './table_populator'
 import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 import store from '../../utility/store'
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import bootupsettings from '../../models/bootupsettings'
 
 var data = [], pages = 0, previousPage = 1, totalCount = 0
@@ -21,7 +21,7 @@ export default class NewApplication extends React.Component {
 		if(storage.getItemValue(keys.USER_PREFERENCE.PREVIOUS_PAGE)){
 			previousPage = JSON.parse(storage.getItemValue(keys.USER_PREFERENCE.PREVIOUS_PAGE))
 		}
-		easygov.send(bootupsettings.ENDPOINTS.ALL_APPLICATIONS, {"pageNumber":previousPage, "size": 15}, "ALL_APPLICATIONS", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.ALL_APPLICATIONS, {"pageNumber":previousPage, "size": 15}, "ALL_APPLICATIONS", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "ALL_APPLICATIONS" || response.type === "SEARCH_ALL_APPLICATIONS") {

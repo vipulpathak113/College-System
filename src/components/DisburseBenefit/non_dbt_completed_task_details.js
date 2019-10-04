@@ -3,7 +3,7 @@ import { Button } from 'react-md'
 import KycDetails from '../VerifyDocuments/kyc_details';
 import store from '../../utility/store'
 import bootupsettings from '../../models/bootupsettings';
-import easygov from '../../utility/network'
+import network from '../../utility/network'
 import keys from '../../models/localStorage-keys'
 import storage from '../../utility/encrypt_data'
 
@@ -34,7 +34,7 @@ export default class NonDBTCompletedTask extends React.Component {
 	}
 
 	componentWillMount() {
-		easygov.send(bootupsettings.ENDPOINTS.VIEW_BENEFIT_DATA, { "benefit_id": this.state.benefitData.id }, "VIEW_BENEFIT_DATA", function (response, component) { })
+		network.send(bootupsettings.ENDPOINTS.VIEW_BENEFIT_DATA, { "benefit_id": this.state.benefitData.id }, "VIEW_BENEFIT_DATA", function (response, component) { })
 		store.subscribe(() => {
 			var response = store.getState()
 			if (response.type === "VIEW_BENEFIT_DATA") {
