@@ -1,5 +1,6 @@
 import React from "react";
-import { TextField } from "react-md";
+import { TextField, Dialog } from "react-md";
+import IconButton from "../Buttons/icon_button";
 import Button from "react-md/lib/Buttons/Button";
 import keys from "../../models/localStorage-keys";
 import storage from "../../utility/encrypt_data";

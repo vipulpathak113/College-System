@@ -5,9 +5,12 @@ import store from "../../utility/store";
 import network from "../../utility/network";
 import bootupsettings from "../../models/bootupsettings";
 import FlatButton from "../Buttons/flat_button";
-import { Button } from "react-md";
+import { Button, Dialog } from "react-md";
 import JobDetails from "./jobs_details";
 import JobFilter from "../Filter/job_filter";
+import IconButton from "../Buttons/icon_button";
+import style from "../../utility/style";
+import CreateJob from "../Jobs/create_jobs";
 
 var data = [],
   applicationData;
@@ -20,7 +23,8 @@ export default class Jobs extends React.Component {
     super(props);
     this.state = {
       jobsdata: [],
-      openViewApplications: false
+      openViewApplications: false,
+      createjobs: false
     };
   }
 
@@ -74,14 +78,53 @@ export default class Jobs extends React.Component {
     });
   }
 
+  openCreateJobsDialog = () => {
+    this.setState({ createjobs: true });
+  };
+
+  closeCreateJobsDialog = () => {
+    this.setState({ createjobs: false });
+  };
+
   render() {
     var data = this.state.jobsdata;
+    const createjobs = this.state.createjobs;
     return (
       <div>
         {!this.state.openViewApplications ? (
           <div className="right-panel-content-bg">
+            <Dialog
+              id="help-support-modal"
+              visible={createjobs}
+              title="Create Jobs"
+              onHide={this.closeCreateJobsDialog}
+              style={style.container}
+              dialogStyle={style.JobdialogStyle}
+              focusOnMount={false}
+            >
+              <div className="dialog-close-btn">
+                <IconButton
+                  icon
+                  fixedPosition="tr"
+                  onClick={this.closeCreateJobsDialog}
+                  displayName="close"
+                ></IconButton>
+              </div>
+              <div>
+                <CreateJob />
+              </div>
+            </Dialog>
+
             <h3 className="approve-beneficiary-text">Job Announcement</h3>
             <JobFilter data={this.state.jobsdata} />
+            <FlatButton
+              flat
+              label="+ CREATE JOBS"
+              onClick={this.openCreateJobsDialog.bind(this)}
+              // style={{ display: this.state.saveDisplay }}
+              // className="saveButton"
+              style={{ bottom: "5px", left: "972px" }}
+            />
             <div>
               <div className="content-table-container">
                 {data.length > 0 ? (
