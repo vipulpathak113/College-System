@@ -96,7 +96,7 @@ export default class Jobs extends React.Component {
             <Dialog
               id="help-support-modal"
               visible={createjobs}
-              title="Create Jobs"
+              title="Create Job"
               onHide={this.closeCreateJobsDialog}
               style={style.container}
               dialogStyle={style.JobdialogStyle}
@@ -111,7 +111,7 @@ export default class Jobs extends React.Component {
                 ></IconButton>
               </div>
               <div>
-                <CreateJob />
+                <CreateJob closeCreateJobsDialog={this.closeCreateJobsDialog} />
               </div>
             </Dialog>
 

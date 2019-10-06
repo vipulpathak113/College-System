@@ -10,6 +10,7 @@ import $ from "jquery";
 import FlatButton from "../Buttons/flat_button";
 import TextareaAutosize from "react-textarea-autosize";
 import style from "../../utility/style";
+import Multiselect from "multiselect-dropdown-react";
 
 var data = [];
 export default class CreateJob extends React.Component {
@@ -19,7 +20,8 @@ export default class CreateJob extends React.Component {
       studentdata: {},
       saveDisplay: "none",
       editDisplay: "block",
-      cancelDisplay: "none"
+      cancelDisplay: "none",
+      deptdata: []
     };
   }
 
@@ -29,32 +31,80 @@ export default class CreateJob extends React.Component {
     });
   }
 
+  save() {
+    const detail = {
+      department: this.state.department,
+      profile: this.state.profile,
+      date_of_drive: this.state.date_of_drive,
+      company: this.state.company,
+      compensation: this.state.compensation,
+      process: this.state.process,
+      eligibility: this.state.eligibility,
+      status: this.state.status,
+      venue: this.state.venue,
+      time: this.state.time,
+      documents_required: this.state.documents_required,
+      location: this.state.location
+    };
+    network.post(
+      bootupsettings.ENDPOINTS.SAVE_JOB,
+      detail,
+      "SAVE_JOB",
+      function(response, component) {}
+    );
+    this.props.closeCreateJobsDialog();
+
+    network.send(bootupsettings.ENDPOINTS.ALL_JOBS, {}, "ALL_JOBS", function(
+      response,
+      component
+    ) {});
+  }
+
+  componentDidMount() {
+    network.send(
+      bootupsettings.ENDPOINTS.GET_DEPARTMENT,
+      {},
+      "GET_DEPARTMENT",
+      function(response, component) {}
+    );
+    store.subscribe(() => {
+      var response = store.getState();
+      console.log(response);
+      if (response.type === "GET_DEPARTMENT") {
+        data = response.results;
+        this.setState({
+          deptdata: data
+        });
+      }
+    });
+  }
+
   render() {
+    console.log(this.props);
+    var deptdata = this.state.deptdata;
     return (
       <div style={{ display: "flex" }}>
         <div>
           <div className="field-containerR">
             <p style={{ margin: "3px" }}>Company Name</p>
             <TextareaAutosize
-              id="first_name"
-              disabled
+              id="company"
               minRows={3}
               maxRows={6}
-              defaultValue={data.company ? data.company : ""}
+              value={this.state.company}
               onChange={this.onChanging.bind(this, event)}
               type="text"
-              className="textArea"
+              className="textArea1"
             />
           </div>
 
           <div className="field-containerR">
             <p style={{ margin: "3px" }}>Date of Drive</p>
-            <div className="beneficiary-details-textfields">
+            <div className="beneficiary-details-textfields1">
               <TextField
-                id="first_name"
+                id="date_of_drive"
                 style={style.textfield1}
-                disabled
-                defaultValue={data.date_of_drive ? data.date_of_drive : ""}
+                value={this.state.date_of_drive}
                 onChange={this.onChanging.bind(this, event)}
                 type="text"
               />
@@ -63,12 +113,11 @@ export default class CreateJob extends React.Component {
 
           <div className="field-containerR">
             <p style={{ margin: "3px" }}>Venue</p>
-            <div className="beneficiary-details-textfields">
+            <div className="beneficiary-details-textfields1">
               <TextField
                 id="venue"
                 style={style.textfield1}
-                disabled
-                defaultValue={data.venue ? data.venue : ""}
+                value={this.state.venue}
                 onChange={this.onChanging.bind(this, event)}
                 type="text"
               />
@@ -82,11 +131,10 @@ export default class CreateJob extends React.Component {
               style={style.textfield1}
               minRows={3}
               maxRows={6}
-              disabled
-              defaultValue={data.eligibility ? data.eligibility : ""}
+              value={this.state.eligibility}
               onChange={this.onChanging.bind(this, event)}
               type="text"
-              className="textArea"
+              className="textArea1"
             />
           </div>
 
@@ -97,11 +145,10 @@ export default class CreateJob extends React.Component {
               style={style.textfield1}
               minRows={3}
               maxRows={6}
-              disabled
-              defaultValue={data.process ? data.process : ""}
+              value={this.state.process}
               onChange={this.onChanging.bind(this, event)}
               type="text"
-              className="textArea"
+              className="textArea1"
             />
           </div>
 
@@ -112,13 +159,10 @@ export default class CreateJob extends React.Component {
               style={style.textfield1}
               minRows={3}
               maxRows={6}
-              disabled
-              defaultValue={
-                data.documents_required ? data.documents_required : ""
-              }
+              value={this.state.documents_required}
               onChange={this.onChanging.bind(this, event)}
               type="text"
-              className="textArea"
+              className="textArea1"
             />
           </div>
         </div>
@@ -131,58 +175,103 @@ export default class CreateJob extends React.Component {
               style={style.textfield1}
               minRows={3}
               maxRows={6}
-              disabled
-              defaultValue={data.profile ? data.profile : ""}
+              value={this.state.profile}
               onChange={this.onChanging.bind(this, event)}
               type="text"
-              className="textArea"
+              className="textArea1"
             />
           </div>
 
-          <div className="">
+          <div className="text-gap">
             <p style={{ margin: "3px" }}>Time</p>
-            <div className="beneficiary-details-textfields">
+            <div className="beneficiary-details-textfields1">
               <TextField
                 id="time"
                 style={style.textfield1}
-                disabled
-                defaultValue={data.time ? data.time : ""}
+                value={this.state.time}
                 onChange={this.onChanging.bind(this, event)}
                 type="text"
               />
             </div>
           </div>
 
-          <div className="">
+          <div className="text-gap">
             <p style={{ margin: "3px" }}>Job Location</p>
-            <div className="beneficiary-details-textfields">
+            <div className="beneficiary-details-textfields1">
               <TextField
                 id="location"
                 style={style.textfield1}
-                disabled
-                defaultValue={data.location ? data.location : ""}
+                value={this.state.location}
                 onChange={this.onChanging.bind(this, event)}
                 type="text"
               />
             </div>
           </div>
 
-          <div className="">
+          <div className="text-gap">
             <p style={{ margin: "3px" }}>Salary</p>
             <TextareaAutosize
               id="compensation"
               style={style.textfield1}
               minRows={3}
               maxRows={6}
-              disabled
-              defaultValue={data.compensation ? data.compensation : ""}
+              value={this.state.compensation}
               onChange={this.onChanging.bind(this, event)}
               type="text"
-              className="textArea"
+              className="textArea1"
             />
           </div>
+          <div className="text-gap" style={{ marginTop: "44px" }}>
+            Department
+            <select
+              defaultValue="Select Department"
+              onChange={this.onChanging.bind(this)}
+              className="selectstyle"
+              id="department"
+              style={{ width: "166px" }}
+            >
+              {deptdata &&
+                deptdata.map((item, key) => {
+                  return (
+                    <option value={item.id} key={key}>
+                      {item.name}
+                    </option>
+                  );
+                })}
+            </select>
+          </div>
+          <div className="text-gap">
+            Status
+            <select
+              value={this.state.status}
+              onChange={this.onChanging.bind(this)}
+              className="selectstyle"
+              id="status"
+            >
+              <option value="">Select Status</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="on_going">On Going</option>
+              <option value="completed">Completed</option>
+              <option value="post_poned">Post Poned</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
         </div>
-        <div></div>
+        <div>
+          <FlatButton
+            label="Save"
+            onClick={this.save.bind(this)}
+            style={{
+              top: "522px",
+              right: "160px",
+              background: "slategray",
+              color: "white",
+              fontWeight: "500",
+              width: "84px",
+              height: "30px"
+            }}
+          />
+        </div>
       </div>
     );
   }

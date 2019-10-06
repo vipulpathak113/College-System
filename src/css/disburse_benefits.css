@@ -181,6 +181,13 @@
   padding-left: 15px;
   width: 450px; }
 
+.beneficiary-details-textfields1 {
+  border: 1px solid #e6e6e6;
+  height: 40px;
+  border-radius: 3px;
+  padding-left: 15px;
+  width: 450px; }
+
 .beneficiary-details-textfields .md-divider {
   display: none !important; }
 

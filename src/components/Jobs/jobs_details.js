@@ -176,7 +176,7 @@ export default class JobDetails extends React.Component {
                 <div className="field-containerR">
                   <p style={{ margin: "3px" }}>Company Name</p>
                   <TextareaAutosize
-                    id="first_name"
+                    id="company"
                     disabled
                     minRows={3}
                     maxRows={6}
@@ -190,7 +190,7 @@ export default class JobDetails extends React.Component {
                 <div className="field-containerR">
                   <p style={{ margin: "3px" }}>Company Profile</p>
                   <TextareaAutosize
-                    id="last_name"
+                    id="company_profile"
                     style={style.textfield1}
                     minRows={3}
                     maxRows={6}
@@ -208,7 +208,7 @@ export default class JobDetails extends React.Component {
                   <p style={{ margin: "3px" }}>Date of Drive</p>
                   <div className="beneficiary-details-textfields">
                     <TextField
-                      id="first_name"
+                      id="date_of_drive"
                       style={style.textfield1}
                       disabled
                       defaultValue={

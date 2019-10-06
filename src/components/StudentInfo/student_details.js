@@ -17,7 +17,8 @@ export default class StudentDetails extends React.Component {
 			studentdata:{},
 			saveDisplay:"none",
 			editDisplay:"block",
-			cancelDisplay:"none"
+			cancelDisplay:"none",
+			deptdata:[]
 		}
     }
 
@@ -39,6 +40,7 @@ export default class StudentDetails extends React.Component {
 	edit(){
 		$("input").prop('disabled', false);
 		$("input").addClass("md-text--enabled");
+		$("#department").prop('disabled', false);
 		this.setState({
 			editDisplay:"none",
 			saveDisplay:"block",
@@ -47,6 +49,7 @@ export default class StudentDetails extends React.Component {
 	}
 
 	save(){
+		console.log(this.state.department)
 		var data= this.props.data
 		var detail={
 			"id":data.id,
@@ -58,7 +61,8 @@ export default class StudentDetails extends React.Component {
 			"address": this.state.address?this.state.address:data.profile.address,
 			"aggregate": this.state.aggregate?this.state.aggregate:data.profile.aggregate,
 			"batch_year": this.state.batch_year?this.state.batch_year:data.profile.batch_year,
-				"department_details": {"name": this.state.departmentname?this.state.departmentname:data.profile.department_details.name},
+			"department":this.state.department?this.state.department:data.profile.department_details.id,
+				"department_details": {"id": this.state.department?this.state.department:data.profile.department_details.id},
 			"num_of_backlogs": this.state.num_of_backlogs?this.state.num_of_backlogs:data.profile.num_of_backlogs,
 			"roll_number": this.state.roll_number?this.state.roll_number:data.profile.roll_number,
 			"cleared_backlogs": this.state.cleared_backlogs?this.state.cleared_backlogs:data.profile.cleared_backlogs,
@@ -75,6 +79,7 @@ export default class StudentDetails extends React.Component {
 		})
 		$("input").prop('disabled', true);
 		$("input").removeClass("md-text--enabled");
+		$("#department").prop('disabled', true);
 
 		network.sendPatch(bootupsettings.ENDPOINTS.EDIT_STUDENT_INFO,detail,"EDIT_STUDENT_INFO", function (response, component) { })
 
@@ -84,6 +89,7 @@ export default class StudentDetails extends React.Component {
 	cancel(){
 		$("input").prop('disabled', true);
 		$("input").removeClass("md-text--enabled");
+		$("#department").prop('disabled', true);
 		this.setState({
 			editDisplay:"block",
 			cancelDisplay:"none",
@@ -92,19 +98,21 @@ export default class StudentDetails extends React.Component {
 	}
 
 	componentDidMount(){
-        network.sendGet(bootupsettings.ENDPOINTS.STUDENT_PROFILE,this.props.data.id,"GET_STUDENT_PROFILE", function (response, component) { })
+        network.send(bootupsettings.ENDPOINTS.GET_DEPARTMENT,{},"GET_DEPARTMENT", function (response, component) { })
         store.subscribe(() => {
-            var response = store.getState()
-			if (response.type === "GET_STUDENT_PROFILE") {
-				data= response
+			var response = store.getState()
+			console.log(response)
+			if (response.type === "GET_DEPARTMENT") {
+				data= response.results
                this.setState({
-                   studentdata: data
+                   deptdata: data
                })
 			}
 		})
 	}
 	
 	onChanging(e){
+		console.log(e.target.value)
 		this.setState({
 			[e.target.id]:e.target.value
 		})
@@ -130,6 +138,7 @@ export default class StudentDetails extends React.Component {
 	        backgroundColor: 'rgba(0,0,0,0.6)',
 	    }}
 		var data= this.props.data
+		var deptdata= this.state.deptdata;
         return(
             <div className="right-panel-content-bg" >
 
@@ -295,20 +304,31 @@ export default class StudentDetails extends React.Component {
 													/>
 												</div>
 											</div>
-
-											<div className="field-containerL">
-												<p style={{ margin: "3px" }}>Department Name</p>
-												<div className="beneficiary-details-textfields">
-													<TextField
-														id="departmentname"
-														style={style.textfield1}
+                                         <div className="field-containerL">
+												  <p style={{ margin: "3px" }}>Department Name</p>
+												  <div className="dropdiv">
+													  <select
+													  defaultValue= {deptdata.find(op => {
+														return op.name === data.profile.department_details.name
+													 })}
+													onChange={this.onChanging.bind(this)}
+													  className="selectstyle"
+													  id="department"
+													  style={{width: "166px",
+														height: "31px" }}
 														disabled
-														defaultValue={data.profile.department_details.name + (data.profile.department_details.short_name ?data.profile.department_details.short_name:"")}
-														type="text"
-														onChange={this.onChanging.bind(this,event)}
-													/>
-												</div>
-											</div>
+													  >
+													{deptdata && deptdata.map((item,key)=>{
+														return (
+															<option value={item.id} key={key}>{item.name}</option>
+														)
+													})}	   
+													  </select>
+												  </div>
+											  </div>
+											 
+											
+										  
 
 											<div className="field-containerL">
 												<p style={{ margin: "3px" }}>Cleared Backlogs</p>
