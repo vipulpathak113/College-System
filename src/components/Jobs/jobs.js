@@ -119,11 +119,16 @@ export default class Jobs extends React.Component {
             <JobFilter data={this.state.jobsdata} />
             <FlatButton
               flat
-              label="+ CREATE JOBS"
+              label="+ CREATE JOB"
               onClick={this.openCreateJobsDialog.bind(this)}
               // style={{ display: this.state.saveDisplay }}
               // className="saveButton"
-              style={{ bottom: "5px", left: "972px" }}
+              style={{
+                bottom: "5px",
+                left: "972px",
+                color: "white",
+                background: "slategrey"
+              }}
             />
             <div>
               <div className="content-table-container">
