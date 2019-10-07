@@ -49,7 +49,6 @@ export default class StudentDetails extends React.Component {
 	}
 
 	save(){
-		console.log(this.state.department)
 		var data= this.props.data
 		var detail={
 			"id":data.id,
@@ -101,7 +100,6 @@ export default class StudentDetails extends React.Component {
         network.send(bootupsettings.ENDPOINTS.GET_DEPARTMENT,{},"GET_DEPARTMENT", function (response, component) { })
         store.subscribe(() => {
 			var response = store.getState()
-			console.log(response)
 			if (response.type === "GET_DEPARTMENT") {
 				data= response.results
                this.setState({
@@ -112,7 +110,6 @@ export default class StudentDetails extends React.Component {
 	}
 	
 	onChanging(e){
-		console.log(e.target.value)
 		this.setState({
 			[e.target.id]:e.target.value
 		})

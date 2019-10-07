@@ -77,7 +77,6 @@ export default class NewVerifyDocuments extends React.Component {
 		})
 	}
 	showMessage(docs) {
-		// console.log("docs", docs);
 		this.setState({
 			showRejectMessage: docs.id
 		})

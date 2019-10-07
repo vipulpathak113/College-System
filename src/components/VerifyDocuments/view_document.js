@@ -232,7 +232,6 @@ export default class ViewDocument extends React.Component {
 	}
 
 	printCommand(val) {
-		console.log("val");
 		var mywindow = window.open('', 'PRINT', 'height=1000,width=1000');
 		mywindow.document.write(document.getElementById(val).innerHTML);
 		mywindow.document.close(); // necessary for IE >= 10

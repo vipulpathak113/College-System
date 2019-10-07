@@ -74,8 +74,31 @@ export default class Jobs extends React.Component {
         this.setState({
           jobsdata: response.data
         });
+      } else if (response.type === "ALL_JOBS") {
+        data = response.results;
+        this.setState({
+          jobsdata: data
+        });
       }
     });
+  }
+
+  deleteJob(data) {
+    var answer = window.confirm("Are you sure you want to delete this job?");
+
+    if (answer) {
+      network.sendDelete(
+        bootupsettings.ENDPOINTS.DELETE_JOB,
+        data,
+        "DELETE_JOB",
+        function(response, component) {}
+      );
+      network.send(bootupsettings.ENDPOINTS.ALL_JOBS, {}, "ALL_JOBS", function(
+        response,
+        component
+      ) {});
+    } else {
+    }
   }
 
   openCreateJobsDialog = () => {
@@ -175,6 +198,14 @@ export default class Jobs extends React.Component {
                             </td>
                             <td className="table-coloumn-positions">
                               {item.profile}
+                            </td>
+                            <td
+                              onClick={event => {
+                                this.deleteJob(item);
+                                event.stopPropagation();
+                              }}
+                            >
+                              <span>Delete</span>
                             </td>
                           </tr>
                         );

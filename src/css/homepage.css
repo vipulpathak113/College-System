@@ -4,7 +4,29 @@ body {
   min-height: 100vh;
   background-color: #f3f5f7; }
 
-h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, tbody, button, textarea, select, option {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+ul,
+li,
+ol,
+div,
+label,
+a,
+input,
+th,
+td,
+tr,
+tbody,
+button,
+textarea,
+select,
+option {
   font-family: Montserrat; }
 
 .admin-left-panel-bg {
@@ -360,7 +382,8 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
   align-items: center; }
 
 #help-support-modal .md-dialog-content--padded {
-  padding: 24px 40px; }
+  padding: 24px 40px;
+  padding-bottom: 50px; }
 
 .officer-name-text {
   color: #202a33;
@@ -459,7 +482,7 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
   font-weight: bold; }
 
 .tab-active:after {
-  animation: zoomIn .3s;
+  animation: zoomIn 0.3s;
   background: #ef7950;
   border-radius: 10px;
   bottom: 0;
@@ -597,7 +620,7 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
   pointer-events: none; }
 
 .arrow-down::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 50%;
@@ -622,7 +645,7 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
   pointer-events: none; }
 
 .reject-arrow-down::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 50%;
@@ -648,7 +671,7 @@ h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, label, a, input, th, td, tr, t
   pointer-events: none; }
 
 .approve-arrow-down::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 50%;
@@ -881,7 +904,7 @@ select:-moz-focusring * {
   /* Specify a stack order in case you're using a different order for other elements */ }
 
 .going-back-btn-style {
-  border: .5px solid #7c7c8e; }
+  border: 0.5px solid #7c7c8e; }
 
 .error-message-text {
   color: red;
@@ -959,7 +982,9 @@ select:-moz-focusring * {
 .beneficiary-details-textfields .md-text-field-container {
   height: 100%; }
 
-.beneficiary-details-textfields .md-text-field-container .md-text-field--margin {
+.beneficiary-details-textfields
+.md-text-field-container
+.md-text-field--margin {
   margin: 0;
   height: 100%; }
 

@@ -60,9 +60,6 @@ export default class JobDetails extends React.Component {
 
   save() {
     var data = this.props.data;
-
-    console.log(data);
-    console.log(this.state);
     var detail = {
       company: this.state.company ? this.state.company : data.company,
       company_profile: this.state.company_profile
@@ -173,7 +170,6 @@ export default class JobDetails extends React.Component {
   render() {
     const {selected} = this.state;
     var data = this.props.data;
-    console.log(this.state.selected)
     var array = this.state.deptdata?this.state.deptdata:"";
     var result = array.map(function(obj) {
         return {label: obj.name, value: obj.id};

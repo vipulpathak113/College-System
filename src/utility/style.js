@@ -13,8 +13,8 @@ const style = {
     borderRadius: "5px"
   },
   JobdialogStyle: {
-    width: "70%",
-    height: "100%",
+    width: "74%",
+    height: "140%",
     overflow: "auto",
     minHeight: "250px",
     borderRadius: "5px"

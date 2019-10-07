@@ -56,7 +56,8 @@ const ENDPOINTS = {
   JOB_FILTER: HOST + "/api/students",
   EDIT_JOB: HOST + "/api/jobs",
   GET_DEPARTMENT: HOST + "/api/departments",
-  SAVE_JOB: HOST + "/api/jobs"
+  SAVE_JOB: HOST + "/api/jobs",
+  DELETE_JOB: HOST + "/api/jobs"
 };
 const URL = {
   COMPARE: "compare",

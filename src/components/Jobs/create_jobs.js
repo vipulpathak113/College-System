@@ -24,7 +24,7 @@ export default class CreateJob extends React.Component {
       cancelDisplay: "none",
       deptdata: [],
       department: "81de5fd7-5af8-4699-bced-e1462c118dac",
-      selected: [],
+      selected: []
     };
   }
 
@@ -51,8 +51,6 @@ export default class CreateJob extends React.Component {
         : "",
       location: this.state.location ? this.state.location : ""
     };
-
-    console.log(detail);
 
     if (detail.company === "") {
       this.setState({
@@ -149,6 +147,16 @@ export default class CreateJob extends React.Component {
         response,
         component
       ) {});
+
+      store.subscribe(() => {
+        var response = store.getState();
+        if (response.type === "ALL_JOBS") {
+          data = response.results;
+          this.setState({
+            jobsdata: data
+          });
+        }
+      });
     }
   }
 
@@ -171,16 +179,12 @@ export default class CreateJob extends React.Component {
   }
 
   render() {
-    console.log(this.state.selected)
     var array = this.state.deptdata;
     var result = array.map(function(obj) {
-        return {label: obj.name, value: obj.id};
+      return { label: obj.name, value: obj.id };
     });
-    
-    console.log(result);
-
     var deptdata = this.state.deptdata;
-    const {selected} = this.state;
+    const { selected } = this.state;
     return (
       <div style={{ display: "flex" }}>
         <div>
@@ -358,19 +362,19 @@ export default class CreateJob extends React.Component {
               </span>
             ) : null}
           </div>
-          <div className="text-gap" style={{ marginTop: "44px" }}>
+          <div className="text-gap" style={{ marginTop: "9px" }}>
             Department
             <MultiSelect
-      options={result}
-      selected={selected}
-      onSelectedChanged={selected => this.setState({selected})}
-      overrideStrings={{
-        selectSomeItems: "Select some department...",
-        allItemsAreSelected: "All Departments are Selected",
-        selectAll: "Select All",
-        search: "Search",
-    }}
-    />
+              options={result}
+              selected={selected}
+              onSelectedChanged={selected => this.setState({ selected })}
+              overrideStrings={{
+                selectSomeItems: "Select some department...",
+                allItemsAreSelected: "All Departments are Selected",
+                selectAll: "Select All",
+                search: "Search"
+              }}
+            />
           </div>
           <div className="text-gap">
             Status
@@ -387,9 +391,6 @@ export default class CreateJob extends React.Component {
               <option value="cancelled">Cancelled</option>
             </select>
           </div>
-
-          
-
         </div>
         <div>
           <FlatButton
