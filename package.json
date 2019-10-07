@@ -4,6 +4,7 @@
   "private": true,
   "description": "",
   "dependencies": {
+    "@khanacademy/react-multi-select": "^0.3.3",
     "@material/select": "^3.2.0",
     "URIjs": "1.16.1",
     "base-64": "^0.1.0",

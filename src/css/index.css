@@ -3813,3 +3813,6 @@ body {
 .text-gap {
   min-height: 80px;
   height: auto; }
+
+.dropdown {
+  width: 100%; }

@@ -10,9 +10,10 @@ import $ from "jquery";
 import FlatButton from "../Buttons/flat_button";
 import TextareaAutosize from "react-textarea-autosize";
 import style from "../../utility/style";
-import Multiselect from "multiselect-dropdown-react";
+import MultiSelect from "@khanacademy/react-multi-select";
 
 var data = [];
+
 export default class CreateJob extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,8 @@ export default class CreateJob extends React.Component {
       editDisplay: "block",
       cancelDisplay: "none",
       deptdata: [],
-      department: "81de5fd7-5af8-4699-bced-e1462c118dac"
+      department: "81de5fd7-5af8-4699-bced-e1462c118dac",
+      selected: [],
     };
   }
 
@@ -34,7 +36,7 @@ export default class CreateJob extends React.Component {
 
   save() {
     const detail = {
-      department: this.state.department ? this.state.department : "",
+      department_ids: this.state.selected ? this.state.selected : "",
       profile: this.state.profile ? this.state.profile : "",
       date_of_drive: this.state.date_of_drive ? this.state.date_of_drive : "",
       company: this.state.company ? this.state.company : "",
@@ -142,7 +144,7 @@ export default class CreateJob extends React.Component {
         function(response, component) {}
       );
 
-      this.props.closeCreateJobsDialog;
+      this.props.closeCreateJobsDialog();
       network.send(bootupsettings.ENDPOINTS.ALL_JOBS, {}, "ALL_JOBS", function(
         response,
         component
@@ -169,7 +171,16 @@ export default class CreateJob extends React.Component {
   }
 
   render() {
+    console.log(this.state.selected)
+    var array = this.state.deptdata;
+    var result = array.map(function(obj) {
+        return {label: obj.name, value: obj.id};
+    });
+    
+    console.log(result);
+
     var deptdata = this.state.deptdata;
+    const {selected} = this.state;
     return (
       <div style={{ display: "flex" }}>
         <div>
@@ -349,22 +360,17 @@ export default class CreateJob extends React.Component {
           </div>
           <div className="text-gap" style={{ marginTop: "44px" }}>
             Department
-            <select
-              defaultValue="81de5fd7-5af8-4699-bced-e1462c118dac"
-              onChange={this.onChanging.bind(this)}
-              className="selectstyle"
-              id="department"
-              style={{ width: "166px" }}
-            >
-              {deptdata &&
-                deptdata.map((item, key) => {
-                  return (
-                    <option value={item.id} key={key}>
-                      {item.name}
-                    </option>
-                  );
-                })}
-            </select>
+            <MultiSelect
+      options={result}
+      selected={selected}
+      onSelectedChanged={selected => this.setState({selected})}
+      overrideStrings={{
+        selectSomeItems: "Select some department...",
+        allItemsAreSelected: "All Departments are Selected",
+        selectAll: "Select All",
+        search: "Search",
+    }}
+    />
           </div>
           <div className="text-gap">
             Status
@@ -381,6 +387,9 @@ export default class CreateJob extends React.Component {
               <option value="cancelled">Cancelled</option>
             </select>
           </div>
+
+          
+
         </div>
         <div>
           <FlatButton

@@ -9,6 +9,7 @@ import network from "../../utility/network";
 import $ from "jquery";
 import FlatButton from "../Buttons/flat_button";
 import TextareaAutosize from "react-textarea-autosize";
+import MultiSelect from "@khanacademy/react-multi-select";
 
 var data = [];
 export default class JobDetails extends React.Component {
@@ -18,7 +19,10 @@ export default class JobDetails extends React.Component {
       studentdata: {},
       saveDisplay: "none",
       editDisplay: "block",
-      cancelDisplay: "none"
+      cancelDisplay: "none",
+      selected:[],
+      deptdata:[],
+      disabled:true
     };
   }
 
@@ -44,10 +48,13 @@ export default class JobDetails extends React.Component {
     $("input").addClass("md-text--enabled");
     $("textarea").prop("disabled", false);
     $("textarea").addClass("md-text--enabled");
+    $('div').prop('disabled', false);
     this.setState({
       editDisplay: "none",
       saveDisplay: "block",
-      cancelDisplay: "block"
+      cancelDisplay: "block",
+      disabled:false,
+      valueRenderer:'Select Departments'
     });
   }
 
@@ -67,8 +74,8 @@ export default class JobDetails extends React.Component {
       date_of_drive: this.state.date_of_drive
         ? this.state.date_of_drive
         : data.date_of_drive,
-      department: this.state.department
-        ? this.state.department
+        department_ids: this.state.selected
+        ? this.state.selected
         : data.department,
       documents_required: this.state.documents_required
         ? this.state.documents_required
@@ -94,7 +101,8 @@ export default class JobDetails extends React.Component {
       detail: detail,
       editDisplay: "block",
       cancelDisplay: "none",
-      saveDisplay: "none"
+      saveDisplay: "none",
+      disabled:true
     });
     $("input").prop("disabled", true);
     $("input").removeClass("md-text--enabled");
@@ -117,7 +125,8 @@ export default class JobDetails extends React.Component {
     this.setState({
       editDisplay: "block",
       cancelDisplay: "none",
-      saveDisplay: "none"
+      saveDisplay: "none",
+      disabled:true
     });
   }
 
@@ -132,8 +141,44 @@ export default class JobDetails extends React.Component {
     this.setState({ is_placed: !data.profile.is_placed });
   }
 
+
+  
+  componentDidMount() {
+   var data= this.props.data;
+    var selectArray = data.departments;
+    var resultSelect = selectArray.map(function(obj) {
+        return obj.id
+    });
+    
+    
+    
+    network.send(
+      bootupsettings.ENDPOINTS.GET_DEPARTMENT,
+      {},
+      "GET_DEPARTMENT",
+      function(response, component) {}
+    );
+    store.subscribe(() => {
+      var response = store.getState();
+      if (response.type === "GET_DEPARTMENT") {
+        data = response.results;
+        this.setState({
+          deptdata: data,
+          selected:resultSelect
+        });
+      }
+    });
+  }
+
   render() {
-    console.log(this.props.data);
+    const {selected} = this.state;
+    var data = this.props.data;
+    console.log(this.state.selected)
+    var array = this.state.deptdata?this.state.deptdata:"";
+    var result = array.map(function(obj) {
+        return {label: obj.name, value: obj.id};
+    });
+
     let style = {
       dropdown: {
         width: "100%",
@@ -148,7 +193,6 @@ export default class JobDetails extends React.Component {
         backgroundColor: "rgba(0,0,0,0.6)"
       }
     };
-    var data = this.props.data;
     return (
       <div className="right-panel-content-bg">
         <div className="non-monetary-heading-container">
@@ -374,9 +418,22 @@ export default class JobDetails extends React.Component {
                   />
                 </div>
 
-                {/* <div style={{marginLeft: "92px",
-											marginTop: "30px"}}>Is Placed: <input type="checkbox"
-										    onChange={ this.handleChecked.bind(this) } disabled defaultChecked={data.profile.is_placed && data.profile.placed_count>=1}/></div> */}
+                <div className="field-containerL">
+                  <p style={{ margin: "3px" }}>Department</p>
+                  <MultiSelect
+                    options={result}
+                    selected={selected}
+                    disabled={this.state.disabled}
+                    onSelectedChanged={selected => this.setState({ selected: [...selected], selected })}
+                    overrideStrings={{
+                      selectSomeItems: "Select some department...",
+                      allItemsAreSelected: "All Departments are Selected",
+                      selectAll: "Select All",
+                      search: "Search",
+                  }}
+    />
+                </div>
+
               </div>
               <div>
                 <FlatButton

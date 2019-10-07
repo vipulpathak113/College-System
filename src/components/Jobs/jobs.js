@@ -147,6 +147,7 @@ export default class Jobs extends React.Component {
                         <th className="table-coloumn-positions">VENUE</th>
                         <th className="table-coloumn-positions">COMPANY</th>
                         <th className="table-coloumn-positions">PROFILE</th>
+                        <th className="table-coloumn-positions">ACTION</th>
                       </tr>
                     </thead>
 
