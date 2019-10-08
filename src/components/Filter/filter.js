@@ -9,13 +9,15 @@ import network from "../../utility/network";
 import $ from "jquery";
 import FlatButton from "../Buttons/flat_button";
 
+var data = [];
 export default class StudentFilter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       year: "",
       department: "",
-      course: ""
+      course: "",
+      deptdata: []
     };
   }
 
@@ -48,7 +50,26 @@ export default class StudentFilter extends React.Component {
     );
   }
 
+  componentDidMount() {
+    network.send(
+      bootupsettings.ENDPOINTS.GET_DEPARTMENT,
+      {},
+      "GET_DEPARTMENT",
+      function(response, component) {}
+    );
+    store.subscribe(() => {
+      var response = store.getState();
+      if (response.type === "GET_DEPARTMENT") {
+        data = response.results;
+        this.setState({
+          deptdata: data
+        });
+      }
+    });
+  }
+
   render() {
+    const { deptdata } = this.state;
     return (
       <div className="right-panel-filter">
         <div className="filter-field">
@@ -78,8 +99,14 @@ export default class StudentFilter extends React.Component {
               name="department"
             >
               <option value="">Select Department</option>
-              <option value="TPN">TPN</option>
-              <option value="CSE">CSE</option>
+              {deptdata &&
+                deptdata.map((item, key) => {
+                  return (
+                    <option value={item.name} key={key}>
+                      {item.name}
+                    </option>
+                  );
+                })}
             </select>
           </div>
 

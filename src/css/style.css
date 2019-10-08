@@ -696,3 +696,16 @@ a:focus {
 
 .dropdown {
   width: 100%; }
+
+.deleteStyle:hover {
+  background-color: mintcream;
+  font: icon; }
+
+.deletebtn {
+  border: 0;
+  border-radius: 3px;
+  position: relative;
+  width: 76px;
+  height: 33px;
+  color: black;
+  font-weight: 600; }

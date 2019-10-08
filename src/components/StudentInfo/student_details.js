@@ -305,20 +305,24 @@ export default class StudentDetails extends React.Component {
 												  <p style={{ margin: "3px" }}>Department Name</p>
 												  <div className="dropdiv">
 													  <select
-													  defaultValue= {deptdata.find(op => {
-														return op.name === data.profile.department_details.name
-													 })}
+													  defaultValue= {data.profile.department_details.name}
 													onChange={this.onChanging.bind(this)}
 													  className="selectstyle"
 													  id="department"
 													  style={{width: "166px",
-														height: "31px" }}
+														height: "31px",marginLeft:"3px" }}
 														disabled
 													  >
 													{deptdata && deptdata.map((item,key)=>{
+															if(item.name === data.profile.department_details.name){
 														return (
-															<option value={item.id} key={key}>{item.name}</option>
-														)
+															<option value={item.id} key={key} selected="selected">{item.name}</option>
+														)}
+														else{
+															return (
+																<option value={item.id} key={key}>{item.name}</option>
+															)	
+														}
 													})}	   
 													  </select>
 												  </div>

@@ -199,8 +199,9 @@ export default class Jobs extends React.Component {
                                 this.deleteJob(item);
                                 event.stopPropagation();
                               }}
+                              className="deleteStyle"
                             >
-                              <span>Delete</span>
+                              <button className="deletebtn">Delete</button>
                             </td>
                           </tr>
                         );
