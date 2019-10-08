@@ -148,15 +148,15 @@ export default class CreateJob extends React.Component {
         component
       ) {});
 
-      store.subscribe(() => {
-        var response = store.getState();
-        if (response.type === "ALL_JOBS") {
-          data = response.results;
-          this.setState({
-            jobsdata: data
-          });
-        }
-      });
+      // store.subscribe(() => {
+      //   var response = store.getState();
+      //   if (response.type === "ALL_JOBS") {
+      //     data = response.results;
+      //     this.setState({
+      //       jobsdata: data
+      //     });
+      //   }
+      // });
     }
   }
 

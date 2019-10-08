@@ -20,9 +20,9 @@ export default class JobDetails extends React.Component {
       saveDisplay: "none",
       editDisplay: "block",
       cancelDisplay: "none",
-      selected:[],
-      deptdata:[],
-      disabled:true
+      selected: [],
+      deptdata: [],
+      disabled: true
     };
   }
 
@@ -48,13 +48,13 @@ export default class JobDetails extends React.Component {
     $("input").addClass("md-text--enabled");
     $("textarea").prop("disabled", false);
     $("textarea").addClass("md-text--enabled");
-    $('div').prop('disabled', false);
+    $("div").prop("disabled", false);
     this.setState({
       editDisplay: "none",
       saveDisplay: "block",
       cancelDisplay: "block",
-      disabled:false,
-      valueRenderer:'Select Departments'
+      disabled: false,
+      valueRenderer: "Select Departments"
     });
   }
 
@@ -71,7 +71,7 @@ export default class JobDetails extends React.Component {
       date_of_drive: this.state.date_of_drive
         ? this.state.date_of_drive
         : data.date_of_drive,
-        department_ids: this.state.selected
+      department_ids: this.state.selected
         ? this.state.selected
         : data.department,
       documents_required: this.state.documents_required
@@ -99,7 +99,7 @@ export default class JobDetails extends React.Component {
       editDisplay: "block",
       cancelDisplay: "none",
       saveDisplay: "none",
-      disabled:true
+      disabled: true
     });
     $("input").prop("disabled", true);
     $("input").removeClass("md-text--enabled");
@@ -123,7 +123,7 @@ export default class JobDetails extends React.Component {
       editDisplay: "block",
       cancelDisplay: "none",
       saveDisplay: "none",
-      disabled:true
+      disabled: true
     });
   }
 
@@ -138,17 +138,12 @@ export default class JobDetails extends React.Component {
     this.setState({ is_placed: !data.profile.is_placed });
   }
 
-
-  
   componentDidMount() {
-   var data= this.props.data;
+    var data = this.props.data;
     var selectArray = data.departments;
     var resultSelect = selectArray.map(function(obj) {
-        return obj.id
+      return obj.id;
     });
-    
-    
-    
     network.send(
       bootupsettings.ENDPOINTS.GET_DEPARTMENT,
       {},
@@ -161,18 +156,18 @@ export default class JobDetails extends React.Component {
         data = response.results;
         this.setState({
           deptdata: data,
-          selected:resultSelect
+          selected: resultSelect
         });
       }
     });
   }
 
   render() {
-    const {selected} = this.state;
+    const { selected } = this.state;
     var data = this.props.data;
-    var array = this.state.deptdata?this.state.deptdata:"";
+    var array = this.state.deptdata ? this.state.deptdata : "";
     var result = array.map(function(obj) {
-        return {label: obj.name, value: obj.id};
+      return { label: obj.name, value: obj.id };
     });
 
     let style = {
@@ -420,16 +415,17 @@ export default class JobDetails extends React.Component {
                     options={result}
                     selected={selected}
                     disabled={this.state.disabled}
-                    onSelectedChanged={selected => this.setState({ selected: [...selected], selected })}
+                    onSelectedChanged={selected =>
+                      this.setState({ selected: [...selected], selected })
+                    }
                     overrideStrings={{
                       selectSomeItems: "Select some department...",
                       allItemsAreSelected: "All Departments are Selected",
                       selectAll: "Select All",
-                      search: "Search",
-                  }}
-    />
+                      search: "Search"
+                    }}
+                  />
                 </div>
-
               </div>
               <div>
                 <FlatButton

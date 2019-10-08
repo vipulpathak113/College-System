@@ -279,12 +279,12 @@ export default class Home extends Component {
 									<IconButton icon displayName="schedule" disabled />
 								</div>
 							</div>
-							<div className="admin-greet-name dropdown">
+							<div className="admin-greet-name drop">
 								<div className="admin-greet-text-container">
 									<h5 className="admin-greet-text">Hello, &nbsp; <span className="admin-name-text"> {storage.getItemValue(keys.USER_PREFERENCE.USER_NAME)?storage.getItemValue(keys.USER_PREFERENCE.USER_NAME):"Admin"}</span> <i className=" material-icons admin-activity-container">keyboard_arrow_down</i></h5>
 								</div>
 								<div className="triangle"></div>
-								<div className="dropdown-content">
+								<div className="drop-content">
 									<a onClick={this.openChangePasswordDialog}> <span className="material-icons" style={{ fontSize: '14px' }}>lock</span> <span className="change-passowrd">Change Password</span></a>
 									<a onClick={this.logoutUser.bind(this)}><span className="material-icons" style={{ fontSize: '14px' }}>power_settings_new</span><span className="change-passowrd">Log Out</span></a>
 								</div>

@@ -3266,7 +3266,7 @@ tbody .md-table-row--hover {
   visibility: hidden; }
 
 .md-divider--text-field {
-  margin-top: 7px; }
+  margin-top: 10px; }
 
 .md-divider--text-field::after {
   background: #ff5722;
@@ -3717,102 +3717,3 @@ tbody .md-table-row--hover {
 
 body {
   margin: 0px; }
-
-.compatFile {
-  color: green; }
-
-.notCompatFile {
-  color: red; }
-
-#filestatus {
-  margin-top: 26px;
-  font-size: initial; }
-
-.editButton {
-  float: right;
-  background: slategray;
-  color: white;
-  top: 580px;
-  right: 134px;
-  font-weight: 500; }
-
-.btndiv {
-  display: flex;
-  float: right; }
-
-.saveButton {
-  background: slategray;
-  font-weight: 500;
-  color: white;
-  top: 580px;
-  right: 134px; }
-
-.cancelButton {
-  background: slategray;
-  font-weight: 500;
-  color: white;
-  top: 547px;
-  right: 20px; }
-
-.filter-field {
-  display: flex;
-  height: 75px;
-  padding-top: 29px;
-  padding-bottom: 0px;
-  padding-left: 13px;
-  margin-bottom: 17px;
-  border-radius: 0.25em;
-  margin-left: 1px;
-  background: white;
-  border: 0.5px solid lightgray; }
-
-.filter-div {
-  margin-right: 10px;
-  font-weight: 600; }
-
-.md-text--enabled {
-  color: black !important; }
-
-.selectstyle {
-  margin-right: 50px;
-  margin-left: 11px;
-  border-radius: 0.25em;
-  cursor: pointer;
-  width: 156px; }
-
-.filterbtn {
-  float: right;
-  background: lightslategray;
-  color: white;
-  font-weight: 500;
-  bottom: 5px; }
-
-.stu-details {
-  font-weight: bold;
-  font-size: initial; }
-
-.dropdiv {
-  font-weight: 500;
-  font-size: medium; }
-
-.textArea {
-  width: 446px;
-  border: 1px solid #e6e6e6;
-  border-radius: 3px;
-  padding-left: 15px;
-  background-color: #f2f2f2;
-  color: rgba(0, 0, 0, 0.38); }
-
-.textArea1 {
-  width: 446px;
-  border: 1px solid #e6e6e6;
-  border-radius: 3px;
-  padding-left: 15px;
-  color: rgba(0, 0, 0, 0.38); }
-
-.text-gap {
-  min-height: 80px;
-  height: auto; }
-
-.dropdown {
-  width: 100%; }

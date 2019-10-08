@@ -74,11 +74,6 @@ export default class Jobs extends React.Component {
         this.setState({
           jobsdata: response.data
         });
-      } else if (response.type === "ALL_JOBS") {
-        data = response.results;
-        this.setState({
-          jobsdata: data
-        });
       }
     });
   }
